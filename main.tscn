@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=9 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Script" path="res://directional_light_3d.gd" id="2_mb777"]
 [ext_resource type="PackedScene" uid="uid://c7l5myag3y81m" path="res://deformable_terrain.tscn" id="3_418bo"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://player_character.tscn" id="3_x2drb"]
-[ext_resource type="Script" path="res://audio_manager.gd" id="4_nlxi7"]
 
 [sub_resource type="Gradient" id="Gradient_1bbnr"]
 interpolation_mode = 2
@@ -37,10 +36,6 @@ dof_blur_far_distance = 25.0
 
 [node name="Main" type="Node3D"]
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-
-[node name="FmodListener3D" type="FmodListener3D" parent="."]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bxegv")
 camera_attributes = SubResource("CameraAttributesPractical_bk2ls")
@@ -59,8 +54,5 @@ cam_speed = 0.1
 [node name="DeformableTerrain" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_418bo")]
 player = NodePath("../PlayerCharacter")
 height_scale = 3.0
-
-[node name="AudioManager" type="Node3D" parent="."]
-script = ExtResource("4_nlxi7")
 
 [connection signal="pos_updated" from="PlayerCharacter" to="DeformableTerrain" method="_on_player_character_pos_updated"]

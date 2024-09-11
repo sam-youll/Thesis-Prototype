@@ -1,7 +1,19 @@
-[gd_scene format=3 uid="uid://1bco2uolklvy"]
+[gd_scene load_steps=4 format=3 uid="uid://1bco2uolklvy"]
+
+[ext_resource type="Script" path="res://terrain.gd" id="1_5hryh"]
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_yh16g"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rsbsb"]
+size = Vector2(256, 256)
+subdivide_width = 511
+subdivide_depth = 511
 
 [node name="Terrain" type="StaticBody3D"]
+script = ExtResource("1_5hryh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("HeightMapShape3D_yh16g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_rsbsb")
