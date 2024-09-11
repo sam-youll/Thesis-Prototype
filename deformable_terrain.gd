@@ -51,4 +51,3 @@ func update_shape() -> void:
 	for i in faces.size():
 		faces[i].y = heightmap[(faces[i].x + 128) * 2 - 1][(faces[i].z + 128) * 2 - 1]
 	coll.shape.set_faces(faces)
-
