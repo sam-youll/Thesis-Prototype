@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cet4plwh8q3uv"]
+
+[ext_resource type="PackedScene" uid="uid://c3bcqnjmpe8ss" path="res://coast_rocks.tscn" id="1_v8ymc"]
+[ext_resource type="Material" uid="uid://4qxri4fm88ma" path="res://resources/materials/snow.tres" id="2_gvayb"]
+
+[node name="coast rocks" instance=ExtResource("1_v8ymc")]
+
+[node name="mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_gvayb")
