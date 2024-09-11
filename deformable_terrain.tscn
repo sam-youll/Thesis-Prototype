@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7l5myag3y81m"]
+
+[ext_resource type="Script" path="res://deformable_terrain.gd" id="1_fshdk"]
+[ext_resource type="Script" path="res://deformable_mesh.gd" id="3_y1e6j"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_12bhi"]
+size = Vector2(256, 256)
+subdivide_width = 511
+subdivide_depth = 511
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ylwbj"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2wq1v"]
+
+[node name="DeformableTerrain" type="StaticBody3D"]
+script = ExtResource("1_fshdk")
+template_mesh = SubResource("PlaneMesh_12bhi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_ylwbj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_2wq1v")
+script = ExtResource("3_y1e6j")
