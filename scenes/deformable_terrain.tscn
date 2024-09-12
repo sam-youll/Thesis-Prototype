@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7l5myag3y81m"]
 
-[ext_resource type="Script" path="res://deformable_terrain.gd" id="1_fshdk"]
-[ext_resource type="Script" path="res://deformable_mesh.gd" id="3_y1e6j"]
+[ext_resource type="Script" path="res://scripts/deformable_terrain.gd" id="1_vhcro"]
+[ext_resource type="Script" path="res://scripts/deformable_mesh.gd" id="2_xgu3g"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_12bhi"]
 size = Vector2(256, 256)
@@ -13,7 +13,7 @@ subdivide_depth = 511
 [sub_resource type="ArrayMesh" id="ArrayMesh_2wq1v"]
 
 [node name="DeformableTerrain" type="StaticBody3D"]
-script = ExtResource("1_fshdk")
+script = ExtResource("1_vhcro")
 template_mesh = SubResource("PlaneMesh_12bhi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -21,4 +21,4 @@ shape = SubResource("ConcavePolygonShape3D_ylwbj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_2wq1v")
-script = ExtResource("3_y1e6j")
+script = ExtResource("2_xgu3g")

@@ -25,7 +25,7 @@ var pos_z: int
 signal pos_updated(pos_x, pos_z)
 
 func _ready() -> void:
-	hover_raycast.target_position = Vector3(0, -1, 0)
+	hover_raycast.target_position = Vector3(0, -.5, 0)
 	speed = default_speed
 	
 func _physics_process(delta: float) -> void:
@@ -98,5 +98,8 @@ func update_pos() -> void:
 	pos_x = clamp(pos_x, 0, 511)
 	pos_z = floor(remap(position.z, -128, 128, 0, 511))
 	pos_z = clamp(pos_z, 0, 511)
+	HeightmapManager.pos_x = pos_x
+	HeightmapManager.pos_z = pos_z
+	HeightmapManager.volume = volume
 	pos_updated.emit(pos_x, pos_z)
 	

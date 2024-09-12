@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://7fb121orm5hd"]
 
-[ext_resource type="Script" path="res://player_controller.gd" id="1_bqrbf"]
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_bqrbf"]
 [ext_resource type="Texture2D" uid="uid://bwhumf02mdr8b" path="res://assets/models/uploads_files_968188_fish+fbx_0.png" id="2_ov3ae"]
 [ext_resource type="PackedScene" uid="uid://dfwudva2dnrp8" path="res://assets/models/rubber_duck/rubber_duck_toy_2k.gltf" id="3_u7l3e"]
 

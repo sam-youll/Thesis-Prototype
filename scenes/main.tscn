@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://7euqejvslmgf"]
 
-[ext_resource type="Script" path="res://directional_light_3d.gd" id="2_mb777"]
-[ext_resource type="PackedScene" uid="uid://c7l5myag3y81m" path="res://deformable_terrain.tscn" id="3_418bo"]
-[ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://player_character.tscn" id="3_x2drb"]
+[ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="2_mb777"]
+[ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
+[ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
 
 [sub_resource type="Gradient" id="Gradient_1bbnr"]
 interpolation_mode = 2
@@ -48,11 +48,9 @@ directional_shadow_blend_splits = true
 script = ExtResource("2_mb777")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_x2drb")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 cam_speed = 0.1
 
-[node name="DeformableTerrain" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_418bo")]
+[node name="MusicTerrain" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_d88xf")]
 player = NodePath("../PlayerCharacter")
-height_scale = 3.0
-
-[connection signal="pos_updated" from="PlayerCharacter" to="DeformableTerrain" method="_on_player_character_pos_updated"]
