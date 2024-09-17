@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=12 format=3 uid="uid://7euqejvslmgf"]
 
-[ext_resource type="Script" path="res://directional_light_3d.gd" id="2_mb777"]
-[ext_resource type="PackedScene" uid="uid://c7l5myag3y81m" path="res://deformable_terrain.tscn" id="3_418bo"]
-[ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://player_character.tscn" id="3_x2drb"]
-[ext_resource type="Script" path="res://audio_manager.gd" id="4_nlxi7"]
+[ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
+[ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="2_mb777"]
+[ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
+[ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
 
 [sub_resource type="Gradient" id="Gradient_1bbnr"]
 interpolation_mode = 2
@@ -14,32 +14,38 @@ colors = PackedColorArray(0.164706, 0, 0.305882, 1, 0.304462, 0.304462, 0.304462
 gradient = SubResource("Gradient_1bbnr")
 use_hdr = true
 
-[sub_resource type="Sky" id="Sky_ully8"]
+[sub_resource type="Sky" id="Sky_l5c81"]
+sky_material = ExtResource("1_cxxyd")
 
 [sub_resource type="Environment" id="Environment_bxegv"]
 background_mode = 2
-sky = SubResource("Sky_ully8")
+sky = SubResource("Sky_l5c81")
 ambient_light_color = Color(0.840112, 0.71318, 0.919398, 1)
 tonemap_mode = 3
 tonemap_white = 5.0
 ssao_enabled = true
 glow_enabled = true
+glow_bloom = 1.0
 fog_enabled = true
+fog_sky_affect = 0.3
+volumetric_fog_emission = Color(0.691357, 0.691357, 0.691357, 1)
+volumetric_fog_sky_affect = 0.239
 adjustment_enabled = true
 adjustment_contrast = 0.8
 adjustment_saturation = 1.3
 adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bk2ls"]
-exposure_multiplier = 2.0
 dof_blur_far_enabled = true
 dof_blur_far_distance = 25.0
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3f5y8"]
+size = Vector2(1024, 1024)
+center_offset = Vector3(0, -0.1, 0)
+
 [node name="Main" type="Node3D"]
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-
-[node name="FmodListener3D" type="FmodListener3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bxegv")
@@ -53,14 +59,17 @@ directional_shadow_blend_splits = true
 script = ExtResource("2_mb777")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_x2drb")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 cam_speed = 0.1
 
-[node name="DeformableTerrain" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_418bo")]
+[node name="MusicTerrain" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_d88xf")]
 player = NodePath("../PlayerCharacter")
-height_scale = 3.0
 
-[node name="AudioManager" type="Node3D" parent="."]
-script = ExtResource("4_nlxi7")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[connection signal="pos_updated" from="PlayerCharacter" to="DeformableTerrain" method="_on_player_character_pos_updated"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_kb8n1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3f5y8")

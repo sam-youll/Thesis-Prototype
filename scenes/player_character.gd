@@ -25,7 +25,7 @@ var pos_z: int
 signal pos_updated(pos_x, pos_z)
 
 func _ready() -> void:
-	hover_raycast.target_position = Vector3(0, -1, 0)
+	hover_raycast.target_position = Vector3(0, -.5, 0)
 	speed = default_speed
 	
 func _physics_process(delta: float) -> void:
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		speed = move_toward(speed, 0, .05)
 	
-	volume = remap(speed, 0, 15, 0, 1)
+	volume = remap(speed, 0, 10, 0, 1)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -92,11 +92,23 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if position.x > 128:
+		position.x = -128
+	if position.x < -128:
+		position.x = 128
+	if position.y > 128:
+		position.y = -128
+	if position.y < -128:
+		position.y = 128
+	
 	
 func update_pos() -> void:
 	pos_x = floor(remap(position.x, -128, 128, 0, 511))
 	pos_x = clamp(pos_x, 0, 511)
 	pos_z = floor(remap(position.z, -128, 128, 0, 511))
 	pos_z = clamp(pos_z, 0, 511)
-	pos_updated.emit(pos_x, pos_z)
+	HeightmapManager.pos_x = pos_x
+	HeightmapManager.pos_z = pos_z
+	HeightmapManager.volume = volume
+	pos_updated.emit(pos_x, pos_z, volume)
 	

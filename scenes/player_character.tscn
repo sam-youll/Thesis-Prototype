@@ -1,7 +1,8 @@
 [gd_scene load_steps=10 format=4 uid="uid://m1243oocw1o4"]
 
-[ext_resource type="Script" path="res://player_character.gd" id="1_23gut"]
+[ext_resource type="Script" path="res://scenes/player_character.gd" id="1_23gut"]
 [ext_resource type="PackedScene" uid="uid://dfwudva2dnrp8" path="res://assets/models/rubber_duck/rubber_duck_toy_2k.gltf" id="2_lando"]
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="2_mqs0j"]
 [ext_resource type="Texture2D" uid="uid://bwhumf02mdr8b" path="res://assets/models/uploads_files_968188_fish+fbx_0.png" id="3_bwk6e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31j56"]
@@ -45,15 +46,41 @@ shadow_mesh = SubResource("ArrayMesh_u0vv4")
 [sub_resource type="SphereShape3D" id="SphereShape3D_qh1u2"]
 radius = 0.151594
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3huql"]
-size = Vector3(0.376709, 0.199036, 1.01172)
-
 [node name="PlayerCharacter" type="CharacterBody3D"]
 script = ExtResource("1_23gut")
 default_speed = 5.0
 max_speed = 10.0
 jump_vel = 5.0
 cam_speed = 0.03
+
+[node name="AudioManager" type="Node3D" parent="."]
+script = ExtResource("2_mqs0j")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="AudioManager"]
+bank_paths = ["res://Movement_Controller_Volume_FMOD/Build/Desktop/Master.strings.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Master.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Ambience.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Music.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/SFX.bank"]
+
+[node name="EventEmitterAmbience" type="FmodEventEmitter3D" parent="AudioManager"]
+event_name = "event:/Ambience"
+event_guid = "{d37af55b-1726-4671-966a-3ac3c8d940ec}"
+autoplay = true
+
+[node name="EventEmitterMusic" type="FmodEventEmitter3D" parent="AudioManager"]
+event_name = "event:/Music"
+event_guid = "{c42db5e0-c86b-4254-ab16-379bec26e668}"
+autoplay = true
+
+[node name="EventEmitterCharacter" type="FmodEventEmitter3D" parent="AudioManager"]
+event_name = "event:/Character Sound"
+event_guid = "{1df554b6-be1d-4933-a5e7-43ceac4cbb14}"
+autoplay = true
+event_parameter/SpeedVolume/id = 7538124305779807749
+event_parameter/SpeedVolume/value = 1.0
+event_parameter/SpeedVolume/min_value = 0.0
+event_parameter/SpeedVolume/max_value = 1.0
+event_parameter/SpeedVolume/default_value = 0.0
+event_parameter/SpeedVolume/variant_type = 3
+
+[node name="FmodListener3D" type="FmodListener3D" parent="AudioManager"]
 
 [node name="RubberDuckModel" parent="." instance=ExtResource("2_lando")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -62,15 +89,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(-0.14745, 3.54216e-05, 4.17252e-05, -2.99207e-05, -0.175, -0.000160846, 5.43715e-05, -0.00024896, 0.113068, 0, -0.032265, -0.154173)
 material_override = SubResource("StandardMaterial3D_31j56")
 mesh = SubResource("ArrayMesh_fweio")
-skeleton = NodePath("")
 
 [node name="CollisionSphere" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132635, 0)
 shape = SubResource("SphereShape3D_qh1u2")
-
-[node name="CollisionBox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.0247498, -0.00585938)
-shape = SubResource("BoxShape3D_3huql")
 
 [node name="HoverRayCast" type="RayCast3D" parent="."]
 top_level = true
@@ -80,3 +102,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80416, 1.47851)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 top_level = true
+
+[connection signal="started" from="AudioManager/EventEmitterCharacter" to="AudioManager" method="_on_event_emitter_character_started"]

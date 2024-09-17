@@ -29,14 +29,15 @@ DSP/dsp_buffer_count=4
 [application]
 
 config/name="Thesis Prototype"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 FmodManager="*res://addons/fmod/FmodManager.gd"
+HeightmapManager="*res://scripts/heightmap_manager.gd"
 
 [editor_plugins]
 
@@ -113,10 +114,6 @@ draw={
 
 [shader_globals]
 
-heightmap={
-"type": "sampler2D",
-"value": ""
-}
 normalmap={
 "type": "sampler2D",
 "value": ""
@@ -124,4 +121,8 @@ normalmap={
 amplitude={
 "type": "float",
 "value": 0.0
+}
+heightmap={
+"type": "sampler2D",
+"value": "res://assets/black square.png"
 }
