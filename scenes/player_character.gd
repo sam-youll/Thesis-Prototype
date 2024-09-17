@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		speed = move_toward(speed, 0, .05)
 	
-	volume = remap(speed, 0, 15, 0, 1)
+	volume = remap(speed, 0, 10, 0, 1)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -92,6 +92,15 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if position.x > 128:
+		position.x = -128
+	if position.x < -128:
+		position.x = 128
+	if position.y > 128:
+		position.y = -128
+	if position.y < -128:
+		position.y = 128
+	
 	
 func update_pos() -> void:
 	pos_x = floor(remap(position.x, -128, 128, 0, 511))
@@ -101,5 +110,5 @@ func update_pos() -> void:
 	HeightmapManager.pos_x = pos_x
 	HeightmapManager.pos_z = pos_z
 	HeightmapManager.volume = volume
-	pos_updated.emit(pos_x, pos_z)
+	pos_updated.emit(pos_x, pos_z, volume)
 	

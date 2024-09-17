@@ -21,7 +21,7 @@ void vertex(){
 
 void fragment() {
 	NORMAL_MAP = mix(texture(normal, texture_position * UV_scale).rgb, texture(normalmap,texture_position).rgb, .9);
-	ALBEDO = mix(texture(albedo, texture_position * UV_scale).rgb, vec3(.15,.1,.4), .9);
+	//ALBEDO = mix(texture(albedo, texture_position * UV_scale).rgb, vec3(.15,.1,.4), .9);
 	SPECULAR = texture(specular, texture_position * UV_scale).r;
 	ROUGHNESS = texture(roughness, texture_position * UV_scale).r;
 }

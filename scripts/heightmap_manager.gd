@@ -1,5 +1,7 @@
 extends Node
 
+@export var player: PlayerCharacter
+
 var heightmap_tex: Texture2D
 var heightmap_img: Image
 var radius: int = 6
@@ -10,8 +12,7 @@ var volume
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	heightmap_tex = BLACK_SQUARE
-	heightmap_img = BLACK_SQUARE.get_image()
+	heightmap_img = Image.new()
 
 func _physics_process(delta: float) -> void:
 	if pos_x != null:
@@ -26,17 +27,18 @@ func init_heightmap() -> void:
 			heightmap_img.set_pixel(x, y, Color(0, 0, 0))
 			
 func update_heightmap() -> void:
-	var remapped_x: int = floor(remap(pos_x, -128, 128, 0, 512))
-	var remapped_z: int = floor(remap(pos_z, -128, 128, 0, 512))
+	#var remapped_x: int = floor(remap(pos_x, -128, 128, 0, 512))
+	#var remapped_z: int = floor(remap(pos_z, -128, 128, 0, 512))
 	for x in radius * 2:
 		for z in radius * 2:
-			var mx := remapped_x + x - radius
-			var mz := remapped_z + z - radius
-			var dist: float = (Vector2(remapped_x, remapped_z) - Vector2(mx, mz)).length() / radius
+			var mx: int = pos_x + x - radius
+			var mz: int = pos_z + z - radius
+			var dist: float = (radius - clamp(((Vector2(pos_x, pos_z) - Vector2(mx, mz)).length()), 0, radius)) / radius
 			var col_val: float = volume * dist
+			col_val = clamp(col_val, 0, 1)
 			var col: Color = Color(col_val, col_val, col_val)
-			heightmap_tex.set_pixel(mx, mz, col)
-	RenderingServer.global_shader_parameter_set("heightmap", heightmap_tex)
+			heightmap_img.set_pixel(mx, mz, col)
+	RenderingServer.global_shader_parameter_set("heightmap", heightmap_img)
 
 func get_height(x, z) -> float:
 	var size = heightmap_img.get_width()

@@ -1,13 +1,14 @@
 extends CollisionShape3D
 class_name CollisionMap
 
-@export var player : Node3D
 @export var template_mesh : PlaneMesh
 @onready var faces = template_mesh.get_faces()
 @export var snap = Vector3.ONE * 4
+@onready var player: PlayerCharacter = %PlayerCharacter
 
 func _ready():
 	update_shape()
+	print(player)
 	
 func _physics_process(_delta):
 	var player_rounded_position = player.global_position.snapped(snap) * Vector3(1,0,1)
