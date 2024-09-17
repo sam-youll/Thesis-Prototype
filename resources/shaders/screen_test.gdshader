@@ -1,12 +1,12 @@
 shader_type canvas_item;
-global uniform sampler2D heightmap;
+uniform sampler2D display_img;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
-	COLOR = texture(heightmap, UV);
+	COLOR = texture(display_img, UV);
 }
 
 //void light() {

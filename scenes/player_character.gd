@@ -11,6 +11,8 @@ class_name PlayerCharacter
 @export var max_speed: float
 var speed: float
 @export var jump_vel: float
+@onready var you_are_here: TextureRect = $"../UI/SubViewportContainer/SubViewport/YouAreHere"
+@export var music_terrain: MusicTerrain
 
 # CAMERA
 @export_group("Camera Properties")
@@ -32,6 +34,8 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 #	print(pos_x)
+	if position.y < music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude:
+		position.y = music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude
 	
 	# === CAMERA CONTROLLER === #
 	cam.global_position = lerp(cam.global_position, cam_target.global_position, cam_speed)
@@ -42,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	# hover raycast is top level, so it won't rotate with parent, but we still want it to move with parent
 	hover_raycast.position = position
 	if hover_raycast.is_colliding():
-		position.y = lerp(position.y, hover_raycast.get_collision_point().y + 1, .1)
+		position.y = lerp(position.y, hover_raycast.get_collision_point().y + 1, .01)
 		
 	var pitch_scalar := Input.get_axis("move_backward", "move_forward")
 	# Add the gravity.
@@ -99,21 +103,19 @@ func _physics_process(delta: float) -> void:
 		position.x = -128
 	if position.x < -128:
 		position.x = 128
-	if position.y > 128:
-		position.y = -128
-	if position.y < -128:
-		position.y = 128
+	if position.z > 128:
+		position.z = -128
+	if position.z < -128:
+		position.z = 128
 		
 	volume_meter.material["shader_parameter/value"] = volume
-	
+	you_are_here.set_position(Vector2(pos_x - 14, pos_z - 14))
+	you_are_here.set_rotation(-basis.get_euler().y)
 	
 func update_pos() -> void:
 	pos_x = floor(remap(position.x, -128, 128, 0, 511))
 	pos_x = clamp(pos_x, 0, 511)
 	pos_z = floor(remap(position.z, -128, 128, 0, 511))
 	pos_z = clamp(pos_z, 0, 511)
-	HeightmapManager.pos_x = pos_x
-	HeightmapManager.pos_z = pos_z
-	HeightmapManager.volume = volume
 	pos_updated.emit(pos_x, pos_z, volume)
 	

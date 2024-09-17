@@ -8,4 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	transform.rotated(Vector3.RIGHT, delta)
+	transform.rotated(Vector3.RIGHT, Time.get_ticks_msec() * .001)

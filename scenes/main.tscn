@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=16 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
+[ext_resource type="Texture2D" uid="uid://c87qhitafwua5" path="res://assets/textures/arrow.png" id="2_0aeaf"]
 [ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="2_mb777"]
 [ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
 [ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
@@ -9,16 +10,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
 shader = ExtResource("1_c6sn7")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_km7ag"]
-shader = ExtResource("2_yqvfm")
-shader_parameter/stepify = true
-shader_parameter/value = 1.0
-shader_parameter/count = 1
-shader_parameter/margin = null
-shader_parameter/shear_angle = 0.0
-shader_parameter/use_value_gradient = false
-shader_parameter/invert = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
@@ -67,10 +58,6 @@ dof_blur_far_distance = 25.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_3f5y8"]
-size = Vector2(1024, 1024)
-center_offset = Vector3(0, -0.1, 0)
-
 [node name="Main" type="Node3D"]
 
 [node name="UI" type="Control" parent="."]
@@ -93,8 +80,7 @@ grow_vertical = 2
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="UI/SubViewportContainer/SubViewport"]
-visible = false
+[node name="Minimap" type="ColorRect" parent="UI/SubViewportContainer/SubViewport"]
 material = SubResource("ShaderMaterial_1vfed")
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,11 +88,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Progress Bar" type="ColorRect" parent="UI/SubViewportContainer/SubViewport"]
-visible = false
-material = SubResource("ShaderMaterial_km7ag")
+[node name="YouAreHere" type="TextureRect" parent="UI/SubViewportContainer/SubViewport"]
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("2_0aeaf")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 layout_mode = 1
@@ -133,21 +120,19 @@ shadow_blur = 3.0
 directional_shadow_blend_splits = true
 script = ExtResource("2_mb777")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("volume_meter") instance=ExtResource("3_x2drb")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("music_terrain", "volume_meter") instance=ExtResource("3_x2drb")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+music_terrain = NodePath("../MusicTerrain")
 cam_speed = 0.1
 volume_meter = NodePath("../UI/PanelContainer/Volume Meter")
 
-[node name="MusicTerrain" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_d88xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
+[node name="MusicTerrain" parent="." node_paths=PackedStringArray("player", "minimap") instance=ExtResource("3_d88xf")]
 player = NodePath("../PlayerCharacter")
+minimap = NodePath("../UI/SubViewportContainer/SubViewport/Minimap")
+radius = 24
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_kb8n1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("PlaneMesh_3f5y8")

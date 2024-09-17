@@ -12,11 +12,9 @@ var volume
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
 	init_heightmap()
 
 func _physics_process(delta: float) -> void: 
-	pass
 	if pos_x != null:
 		update_heightmap()
 
@@ -39,7 +37,7 @@ func update_heightmap() -> void:
 			col_val = clamp(col_val, 0, 1)
 			var col: Color = Color(col_val, col_val, col_val)
 			heightmap_img.set_pixel(mx, mz, col)
-	RenderingServer.global_shader_parameter_set("heightmap", heightmap_img)
+	#RenderingServer.global_shader_parameter_set("heightmap", heightmap_img)
 
 func get_height(x, z) -> float:
 	var size = heightmap_img.get_width()
