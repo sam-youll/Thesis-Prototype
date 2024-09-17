@@ -17,6 +17,8 @@ var speed: float
 @export var cam_speed: float
 
 # OTHER
+@export_group("Other Stuff")
+@export var volume_meter: Panel
 var volume: float
 # world bounds
 var pos_x: int
@@ -55,7 +57,7 @@ func _physics_process(delta: float) -> void:
 #	speed = clamp(speed, 0, 15)
 #	print(speed)
 	
-	# Handle jump.	
+	# Handle jump.
 	if Input.is_action_just_pressed("jump") and hover_raycast.is_colliding():
 		velocity.y = jump_vel
 
@@ -92,6 +94,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	# === POSITION WRAP === #
 	if position.x > 128:
 		position.x = -128
 	if position.x < -128:
@@ -100,6 +103,8 @@ func _physics_process(delta: float) -> void:
 		position.y = -128
 	if position.y < -128:
 		position.y = 128
+		
+	volume_meter.material["shader_parameter/value"] = volume
 	
 	
 func update_pos() -> void:

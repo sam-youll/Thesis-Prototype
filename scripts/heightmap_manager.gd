@@ -4,7 +4,7 @@ extends Node
 
 var heightmap_tex: Texture2D
 var heightmap_img: Image
-var radius: int = 6
+var radius: int = 10
 const BLACK_SQUARE = preload("res://assets/black square.png")
 var pos_x
 var pos_z
@@ -12,15 +12,16 @@ var volume
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	heightmap_img = Image.new()
+	pass
+	init_heightmap()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void: 
+	pass
 	if pos_x != null:
 		update_heightmap()
 
 func init_heightmap() -> void:
-	heightmap_img = Image.new()
-	heightmap_img.create_empty(512, 512, false, Image.FORMAT_L8)
+	heightmap_img = Image.create_empty(512, 512, false, Image.FORMAT_L8)
 	print(heightmap_img.get_width())
 	for x in 512:
 		for y in 512:

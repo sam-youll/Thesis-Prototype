@@ -120,9 +120,9 @@ normalmap={
 }
 amplitude={
 "type": "float",
-"value": 0.0
+"value": 30.0
 }
 heightmap={
 "type": "sampler2D",
-"value": "res://assets/black square.png"
+"value": ""
 }
