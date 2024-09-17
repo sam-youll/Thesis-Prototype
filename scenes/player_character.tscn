@@ -59,16 +59,6 @@ script = ExtResource("2_mqs0j")
 [node name="FmodBankLoader" type="FmodBankLoader" parent="AudioManager"]
 bank_paths = ["res://Movement_Controller_Volume_FMOD/Build/Desktop/Master.strings.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Master.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Ambience.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Music.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/SFX.bank"]
 
-[node name="EventEmitterAmbience" type="FmodEventEmitter3D" parent="AudioManager"]
-event_name = "event:/Ambience"
-event_guid = "{d37af55b-1726-4671-966a-3ac3c8d940ec}"
-autoplay = true
-
-[node name="EventEmitterMusic" type="FmodEventEmitter3D" parent="AudioManager"]
-event_name = "event:/Music"
-event_guid = "{c42db5e0-c86b-4254-ab16-379bec26e668}"
-autoplay = true
-
 [node name="EventEmitterCharacter" type="FmodEventEmitter3D" parent="AudioManager"]
 event_name = "event:/Character Sound"
 event_guid = "{1df554b6-be1d-4933-a5e7-43ceac4cbb14}"
@@ -79,6 +69,7 @@ event_parameter/SpeedVolume/min_value = 0.0
 event_parameter/SpeedVolume/max_value = 1.0
 event_parameter/SpeedVolume/default_value = 0.0
 event_parameter/SpeedVolume/variant_type = 3
+visible = false
 
 [node name="FmodListener3D" type="FmodListener3D" parent="AudioManager"]
 
