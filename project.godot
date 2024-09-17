@@ -37,7 +37,6 @@ config/icon="res://assets/icon.svg"
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 FmodManager="*res://addons/fmod/FmodManager.gd"
-HeightmapManager="*res://scripts/heightmap_manager.gd"
 
 [editor_plugins]
 
@@ -123,6 +122,10 @@ amplitude={
 "value": 30.0
 }
 heightmap={
+"type": "sampler2D",
+"value": ""
+}
+test_img={
 "type": "sampler2D",
 "value": ""
 }
