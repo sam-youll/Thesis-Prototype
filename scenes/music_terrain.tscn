@@ -4,11 +4,10 @@
 [ext_resource type="Shader" path="res://resources/shaders/terrain.gdshader" id="2_g6fcv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hv5dr"]
-size = Vector2(4, 4)
 subdivide_width = 7
 subdivide_depth = 7
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_836f7"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mluql"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j1wxv"]
 
@@ -33,10 +32,13 @@ subdivide_depth = 511
 
 [node name="MusicTerrain" type="StaticBody3D"]
 script = ExtResource("1_5hryh")
+radius = 20
+amplitude = 20
 template_mesh = SubResource("PlaneMesh_hv5dr")
+snap = Vector3(1, 1, 1)
 
 [node name="CollisionMap" type="CollisionShape3D" parent="."]
-shape = SubResource("ConcavePolygonShape3D_836f7")
+shape = SubResource("ConcavePolygonShape3D_mluql")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_rsbsb")

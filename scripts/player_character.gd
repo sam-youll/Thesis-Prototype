@@ -4,13 +4,18 @@ class_name PlayerCharacter
 @onready var hover_raycast: RayCast3D = $HoverRayCast
 @onready var cam: Camera3D = $Camera3D
 @onready var cam_target: Node3D = $CameraTarget
+@onready var cam_look_target: Node3D = $CamLookTarget
 
 # MOVEMENT
 @export_group("Movement Properties")
 @export var default_speed: float
 @export var max_speed: float
+@export var ride_height: float = .5
+var ride_spring_strength: float = 1.5
+var ride_spring_damper: float = .1
 var speed: float
 @export var jump_vel: float
+var is_jumping: bool = false
 @onready var you_are_here: TextureRect = $"../UI/SubViewportContainer/SubViewport/YouAreHere"
 @export var music_terrain: MusicTerrain
 
@@ -29,42 +34,51 @@ var pos_z: int
 signal pos_updated(pos_x, pos_z)
 
 func _ready() -> void:
-	hover_raycast.target_position = Vector3(0, -.5, 0)
+	hover_raycast.target_position = Vector3(0, -100, 0)
 	speed = default_speed
 	
 func _physics_process(delta: float) -> void:
 #	print(pos_x)
-	if position.y < music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude:
-		position.y = music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude
+	#if position.y < music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude:
+		#position.y = music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude
 	
 	# === CAMERA CONTROLLER === #
 	cam.global_position = lerp(cam.global_position, cam_target.global_position, cam_speed)
-	cam.look_at(position)
+	cam_look_target.global_position = lerp(cam.global_position, global_position, cam_speed)
+	cam.look_at(cam_look_target.position)
 	
 	# === MOVEMENT CONTROLLER === #
 	# Hover off ground.
 	# hover raycast is top level, so it won't rotate with parent, but we still want it to move with parent
 	hover_raycast.position = position
 	if hover_raycast.is_colliding():
-		position.y = lerp(position.y, hover_raycast.get_collision_point().y + 1, .01)
-		
+		# ray_length is generally between .02 and .5
+		var ray_length = hover_raycast.position.y - hover_raycast.get_collision_point().y
+		var ray_dir_vel = velocity.dot(Vector3(0, -1, 0))
+		var x = ray_length - ride_height
+		var spring_force
+		if ray_length > ride_height * 2:
+			spring_force = .2
+		else:
+			spring_force = (x * ride_spring_strength) - (ray_dir_vel * ride_spring_damper)
+		velocity.y += -1 * spring_force
+	
+	
 	var pitch_scalar := Input.get_axis("move_backward", "move_forward")
-	# Add the gravity.
-	if not hover_raycast.is_colliding():
-		velocity += get_gravity() * .5*(pitch_scalar+2) * delta
-		
-#	if pitch_scalar:
-#		speed += .1*(pitch_scalar - .3)
-#	else:
-#		speed -= .01
-#		
-#	speed = clamp(speed, 0, 15)
-#	print(speed)
+	## Add the gravity.
+	#if not hover_raycast.is_colliding():
+		#velocity += get_gravity() * .5*(pitch_scalar+2) * delta
+		#
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and hover_raycast.is_colliding():
-		velocity.y = jump_vel
-
+	if Input.is_action_just_pressed("jump") and !is_jumping:
+		velocity.y += jump_vel
+		is_jumping = true
+	
+	if is_jumping:
+		if velocity.y < 0 and hover_raycast.position.y - hover_raycast.get_collision_point().y < ride_height:
+			is_jumping = false
+	
 	if Input.is_action_pressed("speed_up"):
 		speed = move_toward(speed, max_speed, .2)
 	elif Input.is_action_pressed("speed_down"):

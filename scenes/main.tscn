@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=17 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
@@ -56,6 +56,11 @@ adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
 dof_blur_far_enabled = true
 dof_blur_far_distance = 25.0
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_fohas"]
+size = Vector2(4, 4)
+subdivide_width = 7
+subdivide_depth = 7
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
 
 [node name="Main" type="Node3D"]
@@ -63,8 +68,6 @@ dof_blur_far_distance = 25.0
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
 layout_mode = 1
@@ -123,6 +126,7 @@ script = ExtResource("2_mb777")
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("music_terrain", "volume_meter") instance=ExtResource("3_x2drb")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+jump_vel = 10.0
 music_terrain = NodePath("../MusicTerrain")
 cam_speed = 0.1
 volume_meter = NodePath("../UI/PanelContainer/Volume Meter")
@@ -130,7 +134,9 @@ volume_meter = NodePath("../UI/PanelContainer/Volume Meter")
 [node name="MusicTerrain" parent="." node_paths=PackedStringArray("player", "minimap") instance=ExtResource("3_d88xf")]
 player = NodePath("../PlayerCharacter")
 minimap = NodePath("../UI/SubViewportContainer/SubViewport/Minimap")
-radius = 24
+amplitude = 10
+template_mesh = SubResource("PlaneMesh_fohas")
+snap = Vector3(2, 2, 2)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

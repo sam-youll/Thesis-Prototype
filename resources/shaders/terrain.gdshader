@@ -13,7 +13,7 @@ uniform float UV_scale = 1;
 varying vec2 texture_position;
 
 void vertex(){
-	//vec3 world_vertex = VERTEX + MODEL_MATRIX[3].xyz;
+	vec3 world_vertex = VERTEX + MODEL_MATRIX[3].xyz;
 	//texture_position = (VERTEX.xz * vec2(2) + 0.5);
 	VERTEX.y = texture(heightmap, UV).r * amplitude;
 
