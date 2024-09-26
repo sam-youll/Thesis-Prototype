@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=18 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
 [ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
+[ext_resource type="PackedScene" uid="uid://dtvl45wbgsw37" path="res://audio_manager.tscn" id="8_myh0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
@@ -150,3 +151,5 @@ snap = Vector3(2, 2, 2)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_kb8n1")
+
+[node name="AudioManager" parent="." instance=ExtResource("8_myh0g")]
