@@ -3,7 +3,7 @@ class_name AudioManager
 #declaringevent variables
 @onready var ambience : FmodEvent = null
 @onready var music  : FmodEvent = null
-@onready var character_sound: FmodEventEmitter3D = $EventEmitterCharacter
+#@onready var character_sound: FmodEventEmitter3D = $EventEmitterCharacter
 
 
 @onready var player: PlayerCharacter
