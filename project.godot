@@ -40,7 +40,7 @@ EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.g
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fabimakesgames.embed_game/plugin.cfg", "res://addons/fmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 [file_customization]
 

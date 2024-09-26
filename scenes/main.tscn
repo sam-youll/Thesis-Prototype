@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=20 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
