@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{a5912a3f-88c9-4718-96a0-c0e81d4bdc0e}">
+		<property name="name">
+			<value>Player Lean</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e4e38bb7-a520-445b-aac1-442732793690}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{98a3db3e-d35e-4bb4-888f-5055cea15a93}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{98a3db3e-d35e-4bb4-888f-5055cea15a93}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
