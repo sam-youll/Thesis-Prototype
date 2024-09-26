@@ -9,6 +9,11 @@ class_name MusicTerrain
 var mesh_mat: ShaderMaterial
 var heightmap_img: Image
 var heightmap_tex: Texture2D
+var is_terrain_deform_on: bool = false
+@export var map_width: int = 64
+@export var map_height: int = 1024
+@export var map_scale: float = .5 # (e.g. 512 x 512 @ .5 scale -> 256m x 256m in-game)
+@export var noise_tex: NoiseTexture2D
 
 # COLLISION MAP
 @export_group("Collision Map")
@@ -17,25 +22,31 @@ var heightmap_tex: Texture2D
 @onready var faces = template_mesh.get_faces()
 @export var snap = Vector3.ONE * 2
 
+# SPAWNING
+@export_group("Spawning")
+@export var celandine_tscn: PackedScene
+var celandine_img: Image # this image records locations of celandine
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#player.position = Vector3(0, 10, 0)
 	init_heightmap()
+	init_celandine_img()
 	mesh_mat = mesh_instance.mesh.surface_get_material(0)
 	mesh_mat.set_shader_parameter("amplitude", amplitude)
-	update_shape()
-	
-	
-#func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("jump"):
-		##for i in faces.size():
-			##if faces[i].z == 0:
-				##print(str(faces[i].x) + " : " + str(faces[i].y) + " | should be: " + str(.5 * cos(faces[i].x) + .5))
-		#update_shape()
+	if is_terrain_deform_on:
+		update_shape()
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("toggle_terrain_deform"):
+		is_terrain_deform_on = !is_terrain_deform_on
+		print(is_terrain_deform_on)
 
 func _physics_process(delta: float) -> void: 
 	if player.pos_x != null:
-		update_heightmap()
+		if is_terrain_deform_on:
+			update_heightmap()
 		var img := ImageTexture.create_from_image(heightmap_img)
 		mesh_mat.set_shader_parameter("heightmap", img)
 		minimap.material["shader_parameter/display_img"] = img
@@ -44,28 +55,44 @@ func _physics_process(delta: float) -> void:
 	if coll.global_position != player_rounded_position:
 		coll.global_position = player_rounded_position
 	update_shape()
+	
+	#spawn_celandine()
 
 func init_heightmap() -> void:
-	var noise = FastNoiseLite.new().get_seamless_image(512, 512)
-	heightmap_img = Image.create_empty(512, 512, false, Image.FORMAT_L8)
-	for x in 512:
-		for y in 512:
+	#var noise_img = FastNoiseLite.new().get_seamless_image(map_width, map_height)
+	#var noise_img = noise_tex.get_seamless_image(map_width, map_height)
+	heightmap_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
+	for x in map_width:
+		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1
-			var val = noise.get_pixel(x, y).r * .2
+			#var val = noise_img.get_pixel(x, y).r * .1
+			var val = (pow(x - 32, 2)) / (32 * 32)
 			var col = Color(val, val, val)
 			heightmap_img.set_pixel(x, y, col)
 			
 func update_heightmap() -> void:
+	var player_pos = Vector2(player.pos_x, player.pos_z)
 	for x in radius * 2:
 		for z in radius * 2:
 			var mx: int = player.pos_x + x - radius
 			var mz: int = player.pos_z + z - radius
-			if mx < 0 or mx > 511 or mz < 0 or mz > 511:
-				continue
+			#if mx < 0 or mx > 511 or mz < 0 or mz > 511:
+				#continue
+			if mx < 0:
+				mx += map_width
+			if mx >= map_width:
+				mx -= map_width
+			if mz < 0:
+				mz += map_height
+			if mz >= map_height:
+				mz -= map_height
 			var height: float = get_height(mx, mz)
 			if height >= 1:
 				continue
-			var dist: float = (radius - clamp(((Vector2(player.pos_x, player.pos_z) - Vector2(mx, mz)).length()), 0, radius)) / radius
+			#var dist: float = (radius - clamp(((Vector2(player.pos_x, player.pos_z) - Vector2(mx, mz)).length()), 0, radius)) / radius
+			var dist: float = (player_pos - Vector2(mx, mz)).length()
+			dist = remap(dist, 0, radius, 1, 0)
+			dist = clamp(dist, 0, 1)
 			var col_val: float = player.volume * dist * .005 + height
 			col_val = clamp(col_val, 0, 1)
 			var col: Color = Color(col_val, col_val, col_val)
@@ -83,6 +110,29 @@ func get_height(x, z) -> float:
 func update_shape():
 	var offset = 0
 	for i in faces.size():
-		var global_vert = 2*(faces[i] + coll.global_position + Vector3(128, 0, 128))
+		var global_vert = 2 * (faces[i] + coll.global_position + Vector3(map_width * map_scale * .5, 0, map_height * map_scale * .5))
+		if global_vert.x >= map_width:
+			global_vert.x -= map_width
+		elif global_vert.x < 0:
+			global_vert.x += map_width
+		elif global_vert.z >= map_height:
+			global_vert.z -= map_height
+		elif global_vert.z < 0:
+			global_vert.z += map_height
 		faces[i].y = get_height((global_vert.x + offset), (global_vert.z) + offset) * amplitude
 	coll.shape.set_faces(faces)
+
+func init_celandine_img() -> void:
+	celandine_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
+
+func spawn_celandine() -> void:
+	celandine_img.set_pixel(player.pos_x, player.pos_z, Color.GREEN)
+	var new_cel = celandine_tscn.instantiate()
+	add_child(new_cel)
+	new_cel.basis = player.basis.rotated(Vector3.UP, randf() * PI * 2)
+	var randx = randf_range(-1, 1)
+	var randz = randf_range(-1 ,1)
+	var pos = Vector3(player.global_position.x + randx * .5, get_height(player.pos_x + randx, player.pos_z + randz) * amplitude, player.global_position.z + randz * .5)
+	new_cel.global_position = pos
+	var my_scale = randf() + 1.5
+	new_cel.basis = new_cel.basis.scaled(Vector3(my_scale, my_scale, my_scale))
