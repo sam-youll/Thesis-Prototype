@@ -9,9 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
 [ext_resource type="PackedScene" uid="uid://dtvl45wbgsw37" path="res://audio_manager.tscn" id="8_myh0g"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
-shader = ExtResource("1_c6sn7")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
 shader = ExtResource("2_yqvfm")
@@ -22,6 +19,9 @@ shader_parameter/margin = Vector2(0.38, 0)
 shader_parameter/shear_angle = -0.03
 shader_parameter/use_value_gradient = false
 shader_parameter/invert = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
+shader = ExtResource("1_c6sn7")
 
 [sub_resource type="Gradient" id="Gradient_1bbnr"]
 interpolation_mode = 2
@@ -57,6 +57,13 @@ adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
 dof_blur_far_enabled = true
 dof_blur_far_distance = 25.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p7uvu"]
+width = 64
+height = 1024
+noise = SubResource("FastNoiseLite_wdgr0")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_fohas"]
 size = Vector2(4, 4)
 subdivide_width = 7
@@ -75,22 +82,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 472.0
-offset_bottom = 472.0
+offset_right = 512.0
+offset_bottom = 1024.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="UI/SubViewportContainer"]
 handle_input_locally = false
+size = Vector2i(64, 1024)
 render_target_update_mode = 4
-
-[node name="Minimap" type="ColorRect" parent="UI/SubViewportContainer/SubViewport"]
-material = SubResource("ShaderMaterial_1vfed")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="YouAreHere" type="TextureRect" parent="UI/SubViewportContainer/SubViewport"]
 offset_right = 40.0
@@ -113,6 +113,12 @@ grow_vertical = 0
 material = SubResource("ShaderMaterial_306jl")
 layout_mode = 2
 
+[node name="Minimap" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_1vfed")
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 1024.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bxegv")
 camera_attributes = SubResource("CameraAttributesPractical_bk2ls")
@@ -134,8 +140,10 @@ volume_meter = NodePath("../UI/PanelContainer/Volume Meter")
 
 [node name="MusicTerrain" parent="." node_paths=PackedStringArray("player", "minimap") instance=ExtResource("3_d88xf")]
 player = NodePath("../PlayerCharacter")
-minimap = NodePath("../UI/SubViewportContainer/SubViewport/Minimap")
+minimap = NodePath("../UI/Minimap")
+radius = 24
 amplitude = 10
+noise_tex = SubResource("NoiseTexture2D_p7uvu")
 template_mesh = SubResource("PlaneMesh_fohas")
 snap = Vector3(2, 2, 2)
 
