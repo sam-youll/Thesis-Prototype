@@ -18,7 +18,6 @@ cam_speed = 0.03
 script = ExtResource("2_mqs0j")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="AudioManager"]
-bank_paths = ["res://Movement_Controller_Volume_FMOD/Build/Desktop/Master.strings.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Master.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Ambience.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/Music.bank", "res://Movement_Controller_Volume_FMOD/Build/Desktop/SFX.bank"]
 
 [node name="EventEmitterAmbience" type="FmodEventEmitter3D" parent="AudioManager"]
 event_name = "event:/Ambience"
