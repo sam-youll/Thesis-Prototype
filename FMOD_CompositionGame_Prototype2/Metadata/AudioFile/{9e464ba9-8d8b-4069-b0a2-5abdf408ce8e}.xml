@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9e464ba9-8d8b-4069-b0a2-5abdf408ce8e}">
+		<property name="assetPath">
+			<value>amb_birds.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12.330666666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9d23cf9e-1a34-4807-816f-33dab4b76167}</destination>
+		</relationship>
+	</object>
+</objects>

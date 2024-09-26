@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{756e2fce-b799-4b05-b75d-1224ceedcfe7}">
+		<property name="assetPath">
+			<value>mus_lead_clip30.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.9493749999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9d23cf9e-1a34-4807-816f-33dab4b76167}</destination>
+		</relationship>
+	</object>
+</objects>

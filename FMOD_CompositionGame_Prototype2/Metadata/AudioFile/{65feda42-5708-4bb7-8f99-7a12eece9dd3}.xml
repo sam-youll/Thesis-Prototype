@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{65feda42-5708-4bb7-8f99-7a12eece9dd3}">
+		<property name="assetPath">
+			<value>mus_bass_clip1.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8.4479791666666664</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9d23cf9e-1a34-4807-816f-33dab4b76167}</destination>
+		</relationship>
+	</object>
+</objects>
