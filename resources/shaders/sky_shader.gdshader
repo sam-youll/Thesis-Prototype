@@ -7,9 +7,9 @@ void sky() {
 	vec3 warp = texture(noise, SKY_COORDS + texture(noise, coords + texture(noise, coords).rg).rg).rgb;
 	
 	vec3 color = vec3(.08, .01, .2);
-	color = mix(color, vec3(.05, .05, .3), coords.r);
+	color = mix(color, vec3(.05, .05, .1), coords.r);
 	//color = mix(color, vec3(.1), .9);
 	color = mix(color, vec3(.8, .4, .02), warp.r);
-	color = mix(color, vec3(.02,.01,.01), -sin(SKY_COORDS.x * PI)*.5);
+	color = mix(color, vec3(.02,.015,.01), -sin(SKY_COORDS.x * PI)*.5);
 	COLOR = color;
 }
