@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://m1243oocw1o4"]
+[gd_scene load_steps=11 format=4 uid="uid://csl6cl5sf0dlw"]
 
-[ext_resource type="Script" path="res://scripts/player_character.gd" id="1_23gut"]
-[ext_resource type="ArrayMesh" uid="uid://ig0oaay5jbdt" path="res://assets/models/GameCube - SSX 3 - Snowskate/Snowskate.obj" id="4_cwaf5"]
-[ext_resource type="PackedScene" uid="uid://cia8bj1cy57ts" path="res://assets/models/Eddie/Eddie.fbx" id="5_473ku"]
-[ext_resource type="Texture2D" uid="uid://bwhumf02mdr8b" path="res://assets/models/uploads_files_968188_fish+fbx_0.png" id="3_bwk6e"]
+[ext_resource type="Script" path="res://scripts/player_character.gd" id="1_vt2c4"]
+[ext_resource type="PackedScene" uid="uid://dfwudva2dnrp8" path="res://assets/models/rubber_duck/rubber_duck_toy_2k.gltf" id="2_nu5n8"]
+[ext_resource type="Texture2D" uid="uid://bwhumf02mdr8b" path="res://assets/models/uploads_files_968188_fish+fbx_0.png" id="3_dempk"]
+[ext_resource type="ArrayMesh" uid="uid://ig0oaay5jbdt" path="res://assets/models/GameCube - SSX 3 - Snowskate/Snowskate.obj" id="4_ssow4"]
+[ext_resource type="PackedScene" uid="uid://cia8bj1cy57ts" path="res://assets/models/Eddie/Eddie.fbx" id="5_vq4k2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31j56"]
 albedo_color = Color(0.509369, 0.20491, 0.494036, 1)
-albedo_texture = ExtResource("3_bwk6e")
+albedo_texture = ExtResource("3_dempk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxgbn"]
 
@@ -47,13 +48,16 @@ shadow_mesh = SubResource("ArrayMesh_u0vv4")
 radius = 0.151594
 
 [node name="PlayerCharacter" type="CharacterBody3D"]
-script = ExtResource("1_23gut")
+script = ExtResource("1_vt2c4")
+default_speed = 5.0
 max_speed = 10.0
+ride_height = null
 jump_vel = 5.0
 cam_speed = 0.03
 
-[node name="RubberDuckModel" parent="." instance=ExtResource("2_lando")]
+[node name="RubberDuckModel" parent="." instance=ExtResource("2_nu5n8")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="SurfBoardModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.14745, 3.54216e-05, 4.17252e-05, -2.99207e-05, -0.175, -0.000160846, 5.43715e-05, -0.00024896, 0.113068, 0, -0.032265, -0.154173)
@@ -63,6 +67,9 @@ mesh = SubResource("ArrayMesh_fweio")
 [node name="CollisionSphere" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132635, 0)
 shape = SubResource("SphereShape3D_qh1u2")
+
+[node name="HoverRayCast" type="RayCast3D" parent="."]
+top_level = true
 
 [node name="CameraTarget" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80416, 1.47851)
@@ -74,10 +81,9 @@ top_level = true
 [node name="Camera3D" type="Camera3D" parent="."]
 top_level = true
 
-
 [node name="Snowskate" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.97018e-10, 0, 0.00450725, 0, 0.00450725, 0, -0.00450725, 0, -1.97018e-10, 0, 0, 0)
-mesh = ExtResource("4_cwaf5")
+mesh = ExtResource("4_ssow4")
 
-[node name="Eddie" parent="." instance=ExtResource("5_473ku")]
+[node name="Eddie" parent="." instance=ExtResource("5_vq4k2")]
 transform = Transform3D(-1.37435e-10, 0, 0.00314414, 0, 0.00314414, 0, -0.00314414, 0, -1.37435e-10, 0, 0.313852, 0)
