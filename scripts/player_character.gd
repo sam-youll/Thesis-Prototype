@@ -36,9 +36,6 @@ var xlean: float
 var altitude: float
 
 func _physics_process(delta: float) -> void:
-#	print(pos_x)
-	#if position.y < music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude:
-		#position.y = music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude
 	
 	# === CAMERA CONTROLLER === #
 	cam.global_position = lerp(cam.global_position, cam_target.global_position, cam_speed)
@@ -119,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	you_are_here.set_position(Vector2(pos_x - 14, pos_z - 14))
 	you_are_here.set_rotation(-basis.get_euler().y)
 	
-	altitude = remap(position.y, 0, 7, 0, 1)
+	altitude = remap(position.y, 0, 20, 0, 1)
 
 func update_pos():
 	var mw = music_terrain.map_width * music_terrain.map_scale * .5

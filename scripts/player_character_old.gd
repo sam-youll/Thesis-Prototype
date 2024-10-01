@@ -49,10 +49,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-#	print(pos_x)
-	#if position.y < music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude:
-		#position.y = music_terrain.get_height(pos_x, pos_z) * music_terrain.amplitude
-	
 	# === CAMERA CONTROLLER === #
 	cam.global_position = lerp(cam.global_position, cam_target.global_position, cam_speed)
 	cam_look_target.global_position = lerp(cam.global_position, global_position + Vector3.UP, cam_speed)
@@ -128,75 +124,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	
-	
-	# Hover off ground.
-	# hover raycast is top level, so it won't rotate with parent, but we still want it to move with parent
-	#hover_raycast.position = position
-	#if hover_raycast.is_colliding():
-		## ray_length is generally between .02 and .5
-		#var ray_length = hover_raycast.position.y - hover_raycast.get_collision_point().y
-		#var ray_dir_vel = velocity.dot(Vector3(0, -1, 0))
-		#var x = ray_length - ride_height
-		#var spring_force
-		#if ray_length > ride_height * 2 or is_jumping:
-			#spring_force = .2
-		#elif ray_length < ride_height * .5:
-			#spring_force = (x * ride_spring_strength * 3) - (ray_dir_vel * ride_spring_damper)
-		#else:
-			#spring_force = (x * ride_spring_strength) - (ray_dir_vel * ride_spring_damper)
-		#velocity.y += -1 * spring_force
-	
-	
-	#var pitch_scalar := Input.get_axis("move_backward", "move_forward")
-	## Add the gravity.
-	#if not hover_raycast.is_colliding():
-		#velocity += get_gravity() * .5*(pitch_scalar+2) * delta
-		#
-	
-	# Handle jump.
-	#if Input.is_action_just_pressed("jump") and !is_jumping:
-		#velocity.y = jump_vel
-		#is_jumping = true
-	#
-	#if is_jumping:
-		#if velocity.y < 0 and hover_raycast.position.y - hover_raycast.get_collision_point().y < ride_height:
-			#is_jumping = false
-	#
-	#if Input.is_action_pressed("speed_up"):
-		#speed = move_toward(speed, max_speed, .2)
-	#elif Input.is_action_pressed("speed_down"):
-		#speed = move_toward(speed, -2, .1)
-	#else:
-		#speed = move_toward(speed, 0, .05)
-	#
-	#speed_param = remap(speed, 0, 10, 0, 1)
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-##	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#var direction := -basis.z
-##	if direction:
-	#velocity.x = direction.x * speed
-	#velocity.z = direction.z * speed
-##	else:
-##		velocity.x = move_toward(velocity.x, 0, speed/4)
-##		velocity.z = move_toward(velocity.z, 0, speed/4)
-	#
-	#
-	#update_pos()
-	#
-	#move_and_slide()
-	
-	# === POSITION WRAP === #
-	#if position.x > 128:
-		#position.x = -128
-	#if position.x < -128:
-		#position.x = 128
-	#if position.z > 128:
-		#position.z = -128
-	#if position.z < -128:
-		#position.z = 128
+	update_pos()
 		
 	volume_meter.material["shader_parameter/value"] = speed_param
 	you_are_here.set_position(Vector2(pos_x - 14, pos_z - 14))
