@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8b8cf7a6-338f-455f-a018-9cbd9cbb6fe9}">
+		<property name="assetPath">
+			<value>mus_pads_clip19.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.52</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9d23cf9e-1a34-4807-816f-33dab4b76167}</destination>
+		</relationship>
+	</object>
+</objects>

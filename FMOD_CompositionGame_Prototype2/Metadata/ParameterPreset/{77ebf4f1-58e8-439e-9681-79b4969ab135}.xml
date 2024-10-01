@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{77ebf4f1-58e8-439e-9681-79b4969ab135}">
+		<property name="name">
+			<value>PlayerGravity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e4e38bb7-a520-445b-aac1-442732793690}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{016cfac0-7b81-413d-a73e-a9912ca8d14d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{016cfac0-7b81-413d-a73e-a9912ca8d14d}">
+		<property name="minimum">
+			<value>-1</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
