@@ -117,6 +117,7 @@ func _physics_process(delta: float) -> void:
 	you_are_here.set_rotation(-basis.get_euler().y)
 	
 	altitude = remap(position.y, 0, 20, 0, 1)
+	speed_param = remap(speed, 0, max_speed, 0, 1)
 
 func update_pos():
 	var mw = music_terrain.map_width * music_terrain.map_scale * .5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=21 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
@@ -7,8 +7,7 @@
 [ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
 [ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
-
-[ext_resource type="PackedScene" uid="uid://dtvl45wbgsw37" path="res://audio_manager.tscn" id="8_myh0g"]
+[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://audio_manager.tscn" id="8_myh0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
@@ -55,7 +54,6 @@ adjustment_saturation = 1.3
 adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bk2ls"]
-dof_blur_far_enabled = true
 dof_blur_far_distance = 25.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
@@ -71,6 +69,9 @@ subdivide_width = 7
 subdivide_depth = 7
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tk3rm"]
+size = Vector3(0.1, 200, 600)
 
 [node name="Main" type="Node3D"]
 
@@ -154,3 +155,15 @@ snap = Vector3(2, 2, 2)
 shape = SubResource("WorldBoundaryShape3D_kb8n1")
 
 [node name="AudioManager" parent="." instance=ExtResource("8_myh0g")]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_tk3rm")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_tk3rm")
