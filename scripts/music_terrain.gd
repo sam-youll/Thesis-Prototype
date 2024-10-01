@@ -66,7 +66,8 @@ func init_heightmap() -> void:
 		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1
 			#var val = noise_img.get_pixel(x, y).r * .1
-			var val = (pow(x - 32, 2)) / (32 * 32)
+			#var val = (pow(x - 32, 2)) / (32 * 32)
+			var val = 0
 			var col = Color(val, val, val)
 			heightmap_img.set_pixel(x, y, col)
 			
@@ -93,7 +94,7 @@ func update_heightmap() -> void:
 			var dist: float = (player_pos - Vector2(mx, mz)).length()
 			dist = remap(dist, 0, radius, 1, 0)
 			dist = clamp(dist, 0, 1)
-			var col_val: float = player.volume * dist * .005 + height
+			var col_val: float = player.speed_param * dist * .005 + height
 			col_val = clamp(col_val, 0, 1)
 			var col: Color = Color(col_val, col_val, col_val)
 			heightmap_img.set_pixel(mx, mz, col)

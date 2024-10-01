@@ -7,6 +7,10 @@
 [ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
 [ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://audio_manager.tscn" id="8_myh0g"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
