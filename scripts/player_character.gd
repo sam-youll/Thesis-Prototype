@@ -26,7 +26,7 @@ var is_jumping: bool = false
 # OTHER
 @export_group("Other Stuff")
 @export var volume_meter: Panel
-var volume: float
+var speed_param: float
 # world bounds
 var pos_x: int
 var pos_z: int
@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		speed = move_toward(speed, 0, .05)
 	
-	volume = remap(speed, 0, 10, 0, 1)
+	speed_param = remap(speed, 0, 10, 0, 1)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 	#if position.z < -128:
 		#position.z = 128
 		
-	volume_meter.material["shader_parameter/value"] = volume
+	volume_meter.material["shader_parameter/value"] = speed_param
 	you_are_here.set_position(Vector2(pos_x - 14, pos_z - 14))
 	you_are_here.set_rotation(-basis.get_euler().y)
 	
@@ -136,5 +136,5 @@ func update_pos() -> void:
 	pos_x = clamp(pos_x, 0, music_terrain.map_width - 1)
 	pos_z = floor(remap(position.z, -mh, mh, 0, music_terrain.map_height - 1))
 	pos_z = clamp(pos_z, 0, music_terrain.map_height - 1)
-	pos_updated.emit(pos_x, pos_z, volume)
+	pos_updated.emit(pos_x, pos_z, speed_param)
 	

@@ -4,3 +4,8 @@
 
 [node name="AudioManager" type="Node3D"]
 script = ExtResource("1_6vmo4")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://FMOD_CompositionGame_Prototype2/Build/Desktop/Master.strings.bank", "res://FMOD_CompositionGame_Prototype2/Build/Desktop/Master.bank", "res://FMOD_CompositionGame_Prototype2/Build/Desktop/Ambience.bank", "res://FMOD_CompositionGame_Prototype2/Build/Desktop/Character Sounds.bank", "res://FMOD_CompositionGame_Prototype2/Build/Desktop/Music.bank", "res://FMOD_CompositionGame_Prototype2/Build/Desktop/SFX.bank"]
+
+[node name="FmodListener3D" type="FmodListener3D" parent="."]
