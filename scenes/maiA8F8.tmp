@@ -139,9 +139,11 @@ volume_meter = NodePath("../UI/PanelContainer/Volume Meter")
 player = NodePath("../PlayerCharacter")
 minimap = NodePath("../UI/Minimap")
 radius = 24
+amplitude = null
+map_scale = null
 noise_tex = SubResource("NoiseTexture2D_p7uvu")
 template_mesh = SubResource("PlaneMesh_fohas")
-snap = Vector3(2, 2, 2)
+snap = null
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
