@@ -11,5 +11,6 @@ void sky() {
 	//color = mix(color, vec3(.1), .9);
 	color = mix(color, vec3(.8, .4, .02), warp.r);
 	color = mix(color, vec3(.02,.015,.01), -sin(SKY_COORDS.x * PI)*.5);
+	color = mix(color, vec3(0), .9);
 	COLOR = color;
 }

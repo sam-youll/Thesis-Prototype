@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://c1ssmj3jqyx8h"]
+[gd_scene load_steps=9 format=4 uid="uid://c1ssmj3jqyx8h"]
 
 [ext_resource type="Texture2D" uid="uid://dx70a6et2cehh" path="res://assets/models/celandine_01_1k.gltf/textures/celandine_01_diff_1k.jpg" id="1_xvbwb"]
 [ext_resource type="Texture2D" uid="uid://d0rp5o535jf1c" path="res://assets/models/celandine_01_1k.gltf/textures/celandine_01_arm_1k.jpg" id="2_grer8"]
 [ext_resource type="Texture2D" uid="uid://c3pbgq5ivyy8n" path="res://assets/models/celandine_01_1k.gltf/textures/celandine_01_nor_gl_1k.jpg" id="3_j4j2r"]
+[ext_resource type="Script" path="res://scenes/celandine.gd" id="4_hu70j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysodv"]
 resource_name = "celandine_01"
@@ -52,6 +53,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_awfc0")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ve8g6"]
+
 [node name="celandine" type="MeshInstance3D"]
 mesh = SubResource("ArrayMesh_sp5a0")
 skeleton = NodePath("")
+script = ExtResource("4_hu70j")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ve8g6")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

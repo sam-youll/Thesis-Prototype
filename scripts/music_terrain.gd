@@ -37,7 +37,8 @@ func _ready() -> void:
 	mesh_mat.set_shader_parameter("amplitude", amplitude)
 	if is_terrain_deform_on:
 		update_shape()
-
+	update_shape()
+	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_terrain_deform"):
 		is_terrain_deform_on = !is_terrain_deform_on
@@ -56,17 +57,17 @@ func _physics_process(delta: float) -> void:
 		coll.global_position = player_rounded_position
 	update_shape()
 	
-	#spawn_celandine()
+	spawn_celandine()
 
 func init_heightmap() -> void:
-	#var noise_img = FastNoiseLite.new().get_seamless_image(map_width, map_height)
+	var noise_img = FastNoiseLite.new().get_seamless_image(map_width, map_height)
 	#var noise_img = noise_tex.get_seamless_image(map_width, map_height)
-	heightmap_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
+	heightmap_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_R8)
 	for x in map_width:
 		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1
-			#var val = noise_img.get_pixel(x, y).r * .1
-			var val = (pow(x - 32, 2)) / (32 * 32)
+			var val = noise_img.get_pixel(x, y).r
+			#var val = (pow(x - 32, 2)) / (32 * 32)
 			#var val = 0
 			var col = Color(val, val, val)
 			heightmap_img.set_pixel(x, y, col)
@@ -122,6 +123,10 @@ func update_shape():
 			global_vert.z += map_height
 		faces[i].y = get_height((global_vert.x + offset), (global_vert.z) + offset) * amplitude
 	coll.shape.set_faces(faces)
+	#var img = heightmap_img.get_region(Rect2i(Vector2(player.pos_x - 3, player.pos_z + 3), Vector2(6, 6)))
+	##img.resize(3, 3, Image.INTERPOLATE_BILINEAR)
+	#print(player.pos_x)
+	#coll.shape.update_map_data_from_image(img, 0, amplitude)
 
 func init_celandine_img() -> void:
 	celandine_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
