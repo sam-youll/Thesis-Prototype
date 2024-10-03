@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=20 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
@@ -59,8 +59,6 @@ dof_blur_far_distance = 25.0
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p7uvu"]
-width = 64
-height = 1024
 noise = SubResource("FastNoiseLite_wdgr0")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fohas"]
@@ -69,9 +67,6 @@ subdivide_width = 7
 subdivide_depth = 7
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tk3rm"]
-size = Vector3(0.1, 200, 600)
 
 [node name="Main" type="Node3D"]
 
@@ -155,15 +150,3 @@ snap = Vector3(2, 2, 2)
 shape = SubResource("WorldBoundaryShape3D_kb8n1")
 
 [node name="AudioManager" parent="." instance=ExtResource("8_myh0g")]
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-shape = SubResource("BoxShape3D_tk3rm")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-shape = SubResource("BoxShape3D_tk3rm")

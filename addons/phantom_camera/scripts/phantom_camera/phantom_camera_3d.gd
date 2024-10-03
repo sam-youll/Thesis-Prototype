@@ -1285,7 +1285,7 @@ func set_third_person_rotation(value: Vector3) -> void:
 ## Gets the rotation value (in radians) from the [SpringArm3D] for
 ## [param ThirdPerson] [enum FollowMode].
 func get_third_person_rotation() -> Vector3:
-	return _follow_spring_arm.rotation
+return _follow_spring_arm.rotation
 
 
 ## Assigns new rotation (in degrees) value to [SpringArm3D] for

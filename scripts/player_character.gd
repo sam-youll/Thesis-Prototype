@@ -1,10 +1,6 @@
 extends CharacterBody3D
 class_name PlayerCharacter
 
-@onready var cam: Camera3D = $Camera3D
-@onready var cam_target: Node3D = $CameraTarget
-@onready var cam_look_target: Node3D = $CamLookTarget
-
 # MOVEMENT
 @export_group("Movement Properties")
 @export var max_speed: float
@@ -18,29 +14,44 @@ enum State {
 	air,
 	crash
 }
+
 var state: State = State.stand
 
 # CAMERA
+@onready var cam_spring: SpringArm3D = $SpringArm3D
+@onready var cam: Camera3D = $SpringArm3D/Camera3D
+var min_yaw: float = 0
+var max_yaw: float = 360
+var min_pitch: float = -80
+var max_pitch: float = 50
 @export_group("Camera Properties")
-@export var cam_speed: float
+@export_range(.05, 1) var cam_speed: float = .3
 
 # OTHER
 @export_group("Other Stuff")
 @export var volume_meter: Panel
 var speed_param: float
-# world bounds
 var pos_x: int
 var pos_z: int
 var zlean: float
 var xlean: float
 var altitude: float
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	floor_max_angle = 1
 	
-	# === CAMERA CONTROLLER === #
-	cam.global_position = lerp(cam.global_position, cam_target.global_position, cam_speed)
-	cam_look_target.global_position = lerp(cam.global_position, global_position + Vector3.UP, cam_speed)
-	cam.look_at(cam_look_target.position)
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var rot = cam_spring.rotation_degrees
+		rot.y -= event.relative.x * cam_speed
+		rot.y = wrapf(rot.y, min_yaw, max_yaw)
+		rot.x -= event.relative.y * cam_speed
+		rot.x = clampf(rot.x, min_pitch, max_pitch)
+		cam_spring.rotation_degrees = rot
+
+func _physics_process(delta: float) -> void:
+	cam_spring.position = position + Vector3(0, .5, 0)
 	
 	# === MOVEMENT CONTROLLER === #
 	zlean = Input.get_axis("move_left", "move_right")
@@ -51,6 +62,9 @@ func _physics_process(delta: float) -> void:
 			scale.y = 1
 			
 			speed = move_toward(speed, max_speed * (xlean + 1) * .5, .03)
+			
+			zlean = remap(zlean, -1, 1, -.7, .7)
+			xlean = remap(xlean, -1, 1, -.7, .7)
 			
 			var target_basis := Basis.IDENTITY
 			target_basis.rotated(Vector3.UP, basis.get_euler().y)
@@ -67,6 +81,10 @@ func _physics_process(delta: float) -> void:
 			
 			if !is_on_floor():
 				state = State.air
+				
+			var direction = -basis.z
+			velocity.z = direction.z * speed
+			velocity.x = direction.x * speed
 		State.crouch:
 			scale.y = 1
 			
@@ -92,7 +110,13 @@ func _physics_process(delta: float) -> void:
 			
 			if !is_on_floor():
 				state = State.air
+			
+			var direction = -basis.z
+			velocity.z = direction.z * speed
+			velocity.x = direction.x * speed
 		State.air:
+			scale.y = 1
+			
 			if is_on_floor():
 				var player_up = basis.y
 				if player_up.dot(get_floor_normal()) < .2:
@@ -100,17 +124,22 @@ func _physics_process(delta: float) -> void:
 				else:
 					state = State.stand
 			
+			var target_transform := transform
+			target_transform = target_transform.rotated_local(Vector3.BACK, -zlean/20)
+			target_transform = target_transform.rotated_local(Vector3.RIGHT, -xlean/20)
+			transform = target_transform
+			
 			velocity.y -= .15
 		State.crash:
-			speed = lerp(speed, 0, .3)
+			speed = lerp(speed, float(0), .3)
 			if speed <= 0.1:
 				state = State.stand
-	var direction = -basis.z
-	velocity.z = direction.z * speed
-	velocity.x = direction.x * speed
-	move_and_slide()
 	
+	#if music_terrain != null:
+		#music_terrain.update_shape()
+	move_and_slide()
 	update_pos()
+	
 	
 	volume_meter.material["shader_parameter/value"] = speed_param
 	you_are_here.set_position(Vector2(pos_x - 14, pos_z - 14))

@@ -8,7 +8,7 @@
 subdivide_width = 7
 subdivide_depth = 7
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mluql"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_868ky"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j1wxv"]
 
@@ -27,22 +27,21 @@ shader_parameter/heightmap = SubResource("NoiseTexture2D_2cclj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rsbsb"]
 material = SubResource("ShaderMaterial_yugju")
-size = Vector2(32, 512)
-subdivide_width = 63
-subdivide_depth = 1023
+size = Vector2(256, 256)
+subdivide_width = 511
+subdivide_depth = 511
 
 [node name="MusicTerrain" type="StaticBody3D"]
 script = ExtResource("1_5hryh")
 radius = 20
-amplitude = 20
+map_width = 512
+map_height = 512
 template_mesh = SubResource("PlaneMesh_hv5dr")
 snap = Vector3(1, 1, 1)
 celandine_tscn = ExtResource("2_gij4w")
 
 [node name="CollisionMap" type="CollisionShape3D" parent="."]
-shape = SubResource("ConcavePolygonShape3D_mluql")
+shape = SubResource("ConcavePolygonShape3D_868ky")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_rsbsb")
-
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
