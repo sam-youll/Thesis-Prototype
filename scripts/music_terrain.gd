@@ -132,6 +132,9 @@ func init_celandine_img() -> void:
 	celandine_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
 
 func spawn_celandine() -> void:
+	#sound trigger
+	FmodServer.play_one_shot("event:/mus_lead")
+	
 	celandine_img.set_pixel(player.pos_x, player.pos_z, Color.GREEN)
 	var new_cel = celandine_tscn.instantiate()
 	add_child(new_cel)
