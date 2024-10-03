@@ -27,7 +27,6 @@ var is_terrain_deform_on: bool = false
 @export var celandine_tscn: PackedScene
 var celandine_img: Image # this image records locations of celandine
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#player.position = Vector3(0, 10, 0)
@@ -43,6 +42,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_terrain_deform"):
 		is_terrain_deform_on = !is_terrain_deform_on
 		print(is_terrain_deform_on)
+		
+	if Input.is_action_just_pressed("crouch") && player.state != 2:
+		spawn_celandine()
 
 func _physics_process(delta: float) -> void: 
 	if player.pos_x != null:
@@ -56,8 +58,6 @@ func _physics_process(delta: float) -> void:
 	if coll.global_position != player_rounded_position:
 		coll.global_position = player_rounded_position
 	update_shape()
-	
-	spawn_celandine()
 
 func init_heightmap() -> void:
 	var noise_img = FastNoiseLite.new().get_seamless_image(map_width, map_height)
@@ -66,7 +66,7 @@ func init_heightmap() -> void:
 	for x in map_width:
 		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1
-			var val = noise_img.get_pixel(x, y).r
+			var val = noise_img.get_pixel(x, y).r * .5
 			#var val = (pow(x - 32, 2)) / (32 * 32)
 			#var val = 0
 			var col = Color(val, val, val)

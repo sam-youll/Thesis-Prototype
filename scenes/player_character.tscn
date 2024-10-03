@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cia8bj1cy57ts" path="res://assets/models/Eddie/Eddie.fbx" id="5_473ku"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pjq22"]
-radius = 0.0841126
-height = 0.310976
+radius = 0.115804
+height = 0.445162
 
 [node name="PlayerCharacter" type="CharacterBody3D"]
 script = ExtResource("1_23gut")
