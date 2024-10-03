@@ -27,6 +27,9 @@ var is_terrain_deform_on: bool = false
 @export var celandine_tscn: PackedScene
 var celandine_img: Image # this image records locations of celandine
 
+#fmod oneshot variable
+var lead: FmodEvent = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +41,9 @@ func _ready() -> void:
 	if is_terrain_deform_on:
 		update_shape()
 	update_shape()
+	
+	#fmod event initialize
+	lead = FmodServer.create_event_instance("event:/mus_lead")
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_terrain_deform"):
@@ -133,6 +139,7 @@ func init_celandine_img() -> void:
 
 func spawn_celandine() -> void:
 	#sound trigger
+	lead.release()
 	FmodServer.play_one_shot("event:/mus_lead")
 	
 	celandine_img.set_pixel(player.pos_x, player.pos_z, Color.GREEN)
