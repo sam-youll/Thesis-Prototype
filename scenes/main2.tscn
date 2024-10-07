@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="4_6uv4n"]
 [ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="5_sjn5m"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="6_p4ca4"]
-[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://audio_manager.tscn" id="8_0xh6f"]
+[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://scenes/audio_manager.tscn" id="8_0xh6f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
