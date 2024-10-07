@@ -10,9 +10,11 @@ class_name AudioManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#player = get_parent()
+	
 	#initializing events
 	ambience = FmodServer.create_event_instance("event:/Ambience")
 	character_sound = FmodServer.create_event_instance("event:/Character Sounds")
+	
 	#playing events
 	ambience.start()
 	character_sound.start()
