@@ -16,6 +16,6 @@ func _process(delta: float) -> void:
 			if body is PlayerCharacter:
 				var mx = spawn_pos.global_position.x
 				var mz = spawn_pos.global_position.z
-				var my = music_terrain.get_height(spawn_pos.global_position.x * 2 - 128, spawn_pos.global_position.z * 2 - 128)
+				var my = music_terrain.get_height(spawn_pos.global_position.x * 2 + 256, spawn_pos.global_position.z * 2 + 256)
 				body.position = Vector3(mx, my + 3, mz)
 				

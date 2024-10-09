@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://1bco2uolklvy"]
+[gd_scene load_steps=11 format=3 uid="uid://1bco2uolklvy"]
 
 [ext_resource type="Script" path="res://scripts/music_terrain.gd" id="1_5hryh"]
 [ext_resource type="Shader" path="res://resources/shaders/terrain.gdshader" id="2_g6fcv"]
 [ext_resource type="PackedScene" uid="uid://bbb7pvv8ei1j6" path="res://assets/models/celandine_01_1k.gltf/celandine_01_1k.gltf" id="2_gij4w"]
+[ext_resource type="PackedScene" uid="uid://dfwehsmd8b5rp" path="res://fern.tscn" id="3_2m6lo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hv5dr"]
 subdivide_width = 7
@@ -39,6 +40,7 @@ map_height = 512
 template_mesh = SubResource("PlaneMesh_hv5dr")
 snap = Vector3(1, 1, 1)
 celandine_tscn = ExtResource("2_gij4w")
+fern_tscn = ExtResource("3_2m6lo")
 
 [node name="CollisionMap" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_868ky")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfwehsmd8b5rp"]
+
+[ext_resource type="PackedScene" uid="uid://c1gg326v08ups" path="res://assets/models/ferns/fern_02_1k.gltf" id="1_xv2vt"]
+[ext_resource type="Script" path="res://fern.gd" id="2_7srnx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_olaum"]
+
+[node name="fern_02_1k" instance=ExtResource("1_xv2vt")]
+script = ExtResource("2_7srnx")
+
+[node name="fern_02_b" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.532515, 0, -0.474472)
+
+[node name="fern_02_c" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467486, 0, -0.474472)
+
+[node name="fern_02_a" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.532515, 0, 0.525528)
+
+[node name="fern_02_d" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467485, 0, 0.525528)
+
+[node name="Area3D" type="Area3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("SphereShape3D_olaum")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

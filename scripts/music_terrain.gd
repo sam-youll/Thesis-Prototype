@@ -25,6 +25,7 @@ var is_terrain_deform_on: bool = false
 # SPAWNING
 @export_group("Spawning")
 @export var celandine_tscn: PackedScene
+@export var fern_tscn: PackedScene
 var celandine_img: Image # this image records locations of celandine
 
 #fmod oneshot variable
@@ -50,8 +51,10 @@ func _process(delta: float) -> void:
 		is_terrain_deform_on = !is_terrain_deform_on
 		print(is_terrain_deform_on)
 		
-	if Input.is_action_just_pressed("crouch") && player.state != 2:
+	if Input.is_action_just_pressed("spawn_celandine") && player.state != 2:
 		spawn_celandine()
+	if Input.is_action_just_pressed("spawn_fern") && player.state != 2:
+		spawn_fern()
 
 func _physics_process(delta: float) -> void: 
 	if player.pos_x != null:
@@ -152,3 +155,18 @@ func spawn_celandine() -> void:
 	new_cel.global_position = pos
 	var my_scale = randf() + 1.5
 	new_cel.basis = new_cel.basis.scaled(Vector3(my_scale, my_scale, my_scale))
+
+func spawn_fern() -> void:
+	#sound trigger
+	FmodServer.play_one_shot("event:/mus_chime")
+	
+	celandine_img.set_pixel(player.pos_x, player.pos_z, Color.GREEN)
+	var new_fern = fern_tscn.instantiate()
+	add_child(new_fern)
+	new_fern.basis = player.basis.rotated(Vector3.UP, randf() * PI * 2)
+	var randx = randf_range(-1, 1)
+	var randz = randf_range(-1 ,1)
+	var pos = Vector3(player.global_position.x + randx * .5, get_height(player.pos_x + randx, player.pos_z + randz) * amplitude, player.global_position.z + randz * .5)
+	new_fern.global_position = pos
+	var my_scale = randf() + 1.5
+	new_fern.basis = new_fern.basis.scaled(Vector3(my_scale, my_scale, my_scale))
