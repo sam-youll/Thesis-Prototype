@@ -1,12 +1,12 @@
 [gd_scene load_steps=29 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
+[ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
 [ext_resource type="Texture2D" uid="uid://c87qhitafwua5" path="res://assets/textures/arrow.png" id="2_0aeaf"]
 [ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="2_mb777"]
 [ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
 [ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
-[ext_resource type="Texture2D" uid="uid://dru8q240c8prc" path="res://assets/hdris/snow_field_puresky_2k.exr" id="4_qeg3l"]
 [ext_resource type="PackedScene" uid="uid://c1ssmj3jqyx8h" path="res://scenes/celandine.tscn" id="8_kwqva"]
 [ext_resource type="PackedScene" uid="uid://cluuf14vpbakm" path="res://scenes/audio_manager.tscn" id="8_myh0g"]
 [ext_resource type="Script" path="res://scenes/end_of_course_teleporter.gd" id="10_vtc6y"]
@@ -31,43 +31,6 @@ shader_parameter/invert = false
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
 shader = ExtResource("1_c6sn7")
 
-[sub_resource type="Gradient" id="Gradient_1bbnr"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.233831, 0.800995, 1)
-colors = PackedColorArray(0.164706, 0, 0.305882, 1, 0.304462, 0.304462, 0.304462, 1, 0.784314, 0.784314, 0.784314, 1, 0.901961, 1, 0.8, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ce0tw"]
-gradient = SubResource("Gradient_1bbnr")
-use_hdr = true
-
-
-[sub_resource type="Sky" id="Sky_cnj4b"]
-sky_material = ExtResource("1_cxxyd")
-
-[sub_resource type="Environment" id="Environment_bxegv"]
-background_mode = 2
-sky = SubResource("Sky_cnj4b")
-ambient_light_color = Color(0.840112, 0.71318, 0.919398, 1)
-
-tonemap_mode = 3
-tonemap_exposure = 0.6
-tonemap_white = 5.0
-ssao_enabled = true
-glow_enabled = true
-glow_bloom = 1.0
-fog_sky_affect = 0.3
-volumetric_fog_enabled = true
-volumetric_fog_emission = Color(0.691357, 0.691357, 0.691357, 1)
-volumetric_fog_sky_affect = 0.239
-adjustment_contrast = 0.8
-adjustment_saturation = 1.3
-adjustment_color_correction = SubResource("GradientTexture1D_ce0tw")
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bk2ls"]
-exposure_multiplier = 0.4
-dof_blur_far_enabled = true
-dof_blur_far_distance = 100.0
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p7uvu"]
@@ -82,6 +45,41 @@ subdivide_depth = 7
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vngr"]
 plane = Plane(-1, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_e5oks"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.233831, 0.800995, 1)
+colors = PackedColorArray(0.164706, 0, 0.305882, 1, 0.304462, 0.304462, 0.304462, 1, 0.784314, 0.784314, 0.784314, 1, 0.901961, 1, 0.8, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5qhgy"]
+gradient = SubResource("Gradient_e5oks")
+use_hdr = true
+
+[sub_resource type="Sky" id="Sky_l5c81"]
+sky_material = ExtResource("1_cxxyd")
+
+[sub_resource type="Environment" id="Environment_7jalq"]
+background_mode = 2
+sky = SubResource("Sky_l5c81")
+ambient_light_color = Color(0.840112, 0.71318, 0.919398, 1)
+tonemap_mode = 3
+tonemap_white = 5.0
+ssao_enabled = true
+glow_enabled = true
+glow_bloom = 1.0
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.1744
+fog_sky_affect = 0.3
+volumetric_fog_emission = Color(0.691357, 0.691357, 0.691357, 1)
+volumetric_fog_sky_affect = 0.239
+adjustment_enabled = true
+adjustment_contrast = 0.8
+adjustment_saturation = 1.3
+adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lqv80"]
+dof_blur_far_distance = 25.0
 
 [node name="Main" type="Node3D"]
 
@@ -130,10 +128,6 @@ material = SubResource("ShaderMaterial_1vfed")
 layout_mode = 1
 offset_right = 512.0
 offset_bottom = 512.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bxegv")
-camera_attributes = SubResource("CameraAttributesPractical_bk2ls")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.729554, 0.538159, -0.422062, 6.76179e-10, 0.617118, 0.78687, 0.683923, -0.574064, 0.450221, 0, 0, 0)
@@ -192,50 +186,68 @@ shape = SubResource("WorldBoundaryShape3D_8vngr")
 [node name="SpawnPos" type="Node3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -236, 0.1, 0)
 
-[node name="SketchfabSceneTree10" type="MeshInstance3D" parent="."]
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="SketchfabSceneTree10" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, -9.70218, 27.6162, 63.8618)
 mesh = ExtResource("11_nmsjh")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree20" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree20" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07, 2.79045, 2.43949e-07, 3, 2.27435e-07, -58.6176, 27.6162, -52.3918)
 mesh = ExtResource("12_uf72e")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree30" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree30" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.38296, 3.41932e-07, -1.8225, -1.8225, -1.04162e-07, 2.38296, 2.08325e-07, 3, 2.90462e-07, 104.563, 27.6162, -46.5223)
 mesh = ExtResource("13_ng8vk")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree40" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree40" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.56574, -0.0362318, -1.55424, -1.55435, -1.13557e-07, 2.56593, -0.0309895, 2.99978, -0.0187722, 90.698, 27.6162, 60.0044)
 mesh = ExtResource("14_iti85")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree50" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree50" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.68345, 3.20899e-07, -1.34131, -1.34131, -1.17297e-07, 2.68345, 2.34594e-07, 3, 2.48395e-07, 118.969, 27.6162, 78.427)
 mesh = ExtResource("15_20i05")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree60" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree60" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-3, 2.62268e-07, 1.14641e-14, 0, -1.31134e-07, 3, 2.62268e-07, 3, 1.31134e-07, 132.69, 27.6162, 52.0909)
 mesh = ExtResource("16_r52mi")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree41" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree41" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.21441, 3.50738e-07, -2.02395, -2.02395, -9.6795e-08, 2.21441, 1.9359e-07, 3, 3.08074e-07, 21.2602, 27.6162, -89.2723)
 mesh = ExtResource("14_iti85")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree51" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree51" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.06635, 3.57336e-07, -2.1749, -2.1749, -9.03232e-08, 2.06635, 1.80646e-07, 3, 3.2127e-07, 49.5313, 27.6162, -70.8497)
 mesh = ExtResource("15_20i05")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree61" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree61" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-3, 2.62268e-07, 1.14641e-14, 0, -1.31134e-07, 3, 2.62268e-07, 3, 1.31134e-07, 63.2522, 27.6162, -97.1858)
 mesh = ExtResource("16_r52mi")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree42" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree42" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.56109, 3.30559e-07, -1.56231, -1.56231, -1.11949e-07, 2.56109, 2.23897e-07, 3, 2.67716e-07, 43.8016, 27.6162, 45.3044)
 mesh = ExtResource("14_iti85")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree52" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree52" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.83113, 3.05645e-07, -0.992334, -0.992334, -1.23752e-07, 2.83113, 2.47505e-07, 3, 2.17887e-07, 72.0728, 27.6162, 63.727)
 mesh = ExtResource("15_20i05")
+skeleton = NodePath("../..")
 
-[node name="SketchfabSceneTree62" type="MeshInstance3D" parent="."]
+[node name="SketchfabSceneTree62" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.09026, 3.56332e-07, -2.15194, -2.15194, -9.1368e-08, 2.09026, 1.82736e-07, 3, 3.19262e-07, 89.3841, 35.0905, 42.4929)
 mesh = ExtResource("16_r52mi")
+skeleton = NodePath("../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7jalq")
+camera_attributes = SubResource("CameraAttributesPractical_lqv80")
