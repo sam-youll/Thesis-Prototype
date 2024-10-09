@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://x3362jygvhit"]
+
+[ext_resource type="Script" path="res://scripts/tool.gd" id="1_ykefo"]
+
+[node name="MusicTool" type="Node"]
+script = ExtResource("1_ykefo")

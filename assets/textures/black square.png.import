@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwhumf02mdr8b"
-path.s3tc="res://.godot/imported/uploads_files_968188_fish+fbx_0.png-2ecfd2787e7ff83a604eb44cba40afec.s3tc.ctex"
+uid="uid://2h6spunh5dkp"
+path.s3tc="res://.godot/imported/black square.png-eb6f8572c4d828e208e6ed3d236cae0a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "d0a6166074f8ebdd617d03d9c93855d7"
-}
 
 [deps]
 
-source_file="res://assets/models/uploads_files_968188_fish+fbx_0.png"
-dest_files=["res://.godot/imported/uploads_files_968188_fish+fbx_0.png-2ecfd2787e7ff83a604eb44cba40afec.s3tc.ctex"]
+source_file="res://assets/textures/black square.png"
+dest_files=["res://.godot/imported/black square.png-eb6f8572c4d828e208e6ed3d236cae0a.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpufp23dd8c36"]
+
+[ext_resource type="Script" path="res://scripts/tool_manager.gd" id="1_msap5"]
+[ext_resource type="Script" path="res://scripts/tool.gd" id="2_ngymf"]
+
+[node name="ToolManager" type="Node"]
+script = ExtResource("1_msap5")
+
+[node name="MusicTool" type="Node" parent="."]
+script = ExtResource("2_ngymf")
