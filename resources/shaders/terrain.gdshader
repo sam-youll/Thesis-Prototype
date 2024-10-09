@@ -30,10 +30,21 @@ vec3 get_normal(vec3 vert, float adjacent_dist){
 	);
 }
 
+float remap(float value, float min1, float max1, float min2, float max2) {
+  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
+vec2 vec2_remap(vec2 value, float min1, float max1, float min2, float max2) {
+	float x = min2 + (value.x - min1) * (max2 - min2) / (max1 - min1);
+	float y = min2 + (value.y - min1) * (max2 - min2) / (max1 - min1);
+	return vec2(x, y);
+}
+
 void vertex(){
-	vec3 world_vertex = VERTEX + MODEL_MATRIX[3].xyz;
-	//texture_position = (VERTEX.xz * vec2(2) + 0.5);
-	VERTEX.y = texture(heightmap, UV).r * amplitude;
+	//vec3 world_vertex = VERTEX + MODEL_MATRIX[3].xyz;
+	//texture_position = ((world_vertex.xz + .5) / 512.);
+	//vec2 tex_pos = VERTEX.xz;
+	//tex_pos = vec2_remap(tex_pos, -1, 1, 0, 256);
+	VERTEX.y = texture(heightmap, UV + 1./512.).r * amplitude;
 
 }
 
@@ -41,6 +52,7 @@ void fragment() {
 	//NORMAL_MAP = mix(texture(normal, texture_position * UV_scale).rgb, texture(normalmap,texture_position).rgb, .9);
 	//ALBEDO = mix(texture(albedo, texture_position * UV_scale).rgb, vec3(.15,.1,.4), .9);
 	ALBEDO = texture(heightmap, UV).rgb;
+	//NORMAL = get_normal(VERTEX, .1);
 	//ALBEDO = vec3(0);
 	//SPECULAR = texture(specular, texture_position * UV_scale).r;
 	//ROUGHNESS = texture(roughness, texture_position * UV_scale).r;
