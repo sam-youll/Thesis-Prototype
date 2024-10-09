@@ -142,8 +142,6 @@ func init_celandine_img() -> void:
 	celandine_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
 
 func spawn_celandine() -> void:
-	#sound trigger
-	FmodServer.play_one_shot("event:/mus_chime")
 	
 	celandine_img.set_pixel(player.pos_x, player.pos_z, Color.GREEN)
 	var new_cel = celandine_tscn.instantiate()
@@ -157,8 +155,6 @@ func spawn_celandine() -> void:
 	new_cel.basis = new_cel.basis.scaled(Vector3(my_scale, my_scale, my_scale))
 
 func spawn_fern() -> void:
-	#sound trigger
-	FmodServer.play_one_shot("event:/mus_chime")
 	
 	celandine_img.set_pixel(player.pos_x, player.pos_z, Color.GREEN)
 	var new_fern = fern_tscn.instantiate()
