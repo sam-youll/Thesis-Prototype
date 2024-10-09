@@ -1,0 +1,25 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6r6qxsp263cq"]
+
+[ext_resource type="Script" path="res://scripts/random_tree.gd" id="1_iir46"]
+[ext_resource type="ArrayMesh" uid="uid://c4ntrpa6o5xqb" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 1_0.res" id="2_tyoo1"]
+[ext_resource type="ArrayMesh" uid="uid://dwx3q8erojh5l" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 2_0.res" id="3_3bkqo"]
+[ext_resource type="ArrayMesh" uid="uid://snwdlux04ipy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 3_0.res" id="4_t4tro"]
+[ext_resource type="ArrayMesh" uid="uid://cyhs6mounwf36" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 4_0.res" id="5_dblug"]
+[ext_resource type="ArrayMesh" uid="uid://e0e8o2jkainy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 5_0.res" id="6_ootew"]
+[ext_resource type="ArrayMesh" uid="uid://dyy0uxt2l36wg" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 6_0.res" id="7_m3ec2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f1ngt"]
+radius = 1.47882
+height = 21.7959
+
+[node name="RandomTree" type="StaticBody3D"]
+script = ExtResource("1_iir46")
+trees = [ExtResource("2_tyoo1"), ExtResource("3_3bkqo"), ExtResource("4_t4tro"), ExtResource("5_dblug"), ExtResource("6_ootew"), ExtResource("7_m3ec2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8563, 0)
+shape = SubResource("CapsuleShape3D_f1ngt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+mesh = ExtResource("2_tyoo1")

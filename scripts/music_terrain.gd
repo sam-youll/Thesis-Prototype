@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 func init_heightmap() -> void:
 	var noise_img = FastNoiseLite.new().get_seamless_image(map_width, map_height)
 	#var noise_img = noise_tex.get_seamless_image(map_width, map_height)
-	heightmap_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_R8)
+	heightmap_img = Image.create_empty(map_width, map_height, false, Image.FORMAT_L8)
 	for x in map_width:
 		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1

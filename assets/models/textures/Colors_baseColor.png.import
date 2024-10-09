@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2h6spunh5dkp"
-path.s3tc="res://.godot/imported/black square.png-5312e377b5fbf84a3c665a699d1b21f9.s3tc.ctex"
+uid="uid://bykwj8xl0h2af"
+path.s3tc="res://.godot/imported/Colors_baseColor.png-9f3a773d996ea13fd3a10c3f51cc9c16.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/black square.png"
-dest_files=["res://.godot/imported/black square.png-5312e377b5fbf84a3c665a699d1b21f9.s3tc.ctex"]
+source_file="res://assets/models/textures/Colors_baseColor.png"
+dest_files=["res://.godot/imported/Colors_baseColor.png-9f3a773d996ea13fd3a10c3f51cc9c16.s3tc.ctex"]
 
 [params]
 

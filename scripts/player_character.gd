@@ -119,7 +119,7 @@ func _physics_process(delta: float) -> void:
 			
 			if is_on_floor():
 				var player_up = basis.y
-				if player_up.dot(get_floor_normal()) < .2:
+				if player_up.dot(get_floor_normal()) < 0:
 					state = State.crash
 				else:
 					state = State.stand

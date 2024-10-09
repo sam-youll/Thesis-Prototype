@@ -31,7 +31,7 @@ DSP/dsp_buffer_count=4
 config/name="Thesis Prototype"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://assets/icon.svg"
+config/icon="res://assets/textures/icon.svg"
 
 [autoload]
 

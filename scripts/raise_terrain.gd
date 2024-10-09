@@ -1,6 +1,5 @@
-@icon("res://assets/textures/node icons/manager.svg")
-class_name ToolManager
-extends Node
+extends MusicTool
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

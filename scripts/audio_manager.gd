@@ -1,3 +1,4 @@
+@icon("res://assets/textures/node icons/playlist.svg")
 extends Node3D
 class_name AudioManager
 #declaringevent variables

@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://b48vom8pg15ec"]
+
+[ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_t4vcx"]
+[ext_resource type="Script" path="res://scripts/player_character.gd" id="2_stcgc"]
+[ext_resource type="Script" path="res://scripts/music_terrain.gd" id="3_phk5y"]
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="4_jy313"]
+
+[sub_resource type="Gradient" id="Gradient_nt3mb"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.233831, 0.800995, 1)
+colors = PackedColorArray(0.164706, 0, 0.305882, 1, 0.304462, 0.304462, 0.304462, 1, 0.784314, 0.784314, 0.784314, 1, 0.901961, 1, 0.8, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5qhgy"]
+gradient = SubResource("Gradient_nt3mb")
+use_hdr = true
+
+[sub_resource type="Sky" id="Sky_l5c81"]
+sky_material = ExtResource("1_t4vcx")
+
+[sub_resource type="Environment" id="Environment_nuie3"]
+background_mode = 2
+sky = SubResource("Sky_l5c81")
+ambient_light_color = Color(0.840112, 0.71318, 0.919398, 1)
+tonemap_mode = 3
+tonemap_white = 5.0
+ssao_enabled = true
+glow_enabled = true
+glow_bloom = 1.0
+fog_enabled = true
+fog_sky_affect = 0.3
+volumetric_fog_emission = Color(0.691357, 0.691357, 0.691357, 1)
+volumetric_fog_sky_affect = 0.239
+adjustment_enabled = true
+adjustment_contrast = 0.8
+adjustment_saturation = 1.3
+adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_iwaw8"]
+dof_blur_far_distance = 25.0
+
+[node name="Playtest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nuie3")
+camera_attributes = SubResource("CameraAttributesPractical_iwaw8")
+
+[node name="PlayerCharacter" type="CharacterBody3D" parent="."]
+script = ExtResource("2_stcgc")
+
+[node name="MusicTerrain" type="StaticBody3D" parent="."]
+script = ExtResource("3_phk5y")
+
+[node name="AudioManager" type="Node3D" parent="."]
+script = ExtResource("4_jy313")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

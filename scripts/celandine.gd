@@ -5,6 +5,7 @@ class_name Celandine
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	print("area entered")
+
 	FmodServer.play_one_shot("event:/mus_chime")
 
 

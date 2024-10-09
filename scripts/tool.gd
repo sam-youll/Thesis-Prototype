@@ -1,5 +1,5 @@
-@icon("res://assets/textures/node icons/manager.svg")
-class_name ToolManager
+@icon("res://assets/textures/node icons/scribe.svg")
+class_name MusicTool
 extends Node
 
 # Called when the node enters the scene tree for the first time.
