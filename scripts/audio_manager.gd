@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	character_sound.set_parameter_by_name("PlayerAltitude", player.altitude)
 	
 	#change variable name and uncomment this out when height variable is set 
-	#character_sound.set_parameter_by_name("Terrain Height", player.variablename)
+	character_sound.set_parameter_by_name("Terrain Height", player.height_param)
 	
 	if Input.is_action_just_pressed("jump"):
 		FmodServer.play_one_shot("event:/jump sfx")

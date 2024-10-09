@@ -76,7 +76,7 @@ func init_heightmap() -> void:
 	for x in map_width:
 		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1
-			var val = noise_img.get_pixel(x, y).r * .5
+			var val = noise_img.get_pixel(x, y).r
 			#var val = (pow(x - 32, 2)) / (32 * 32)
 			#var val = 0
 			var col = Color(val, val, val)

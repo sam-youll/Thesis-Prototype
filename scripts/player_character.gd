@@ -31,6 +31,7 @@ var max_pitch: float = 50
 @export_group("Other Stuff")
 @export var volume_meter: Panel
 var speed_param: float
+var height_param: float
 var pos_x: int
 var pos_z: int
 var zlean: float
@@ -147,6 +148,9 @@ func _physics_process(delta: float) -> void:
 	
 	altitude = remap(position.y, 0, 20, 0, 1)
 	speed_param = remap(speed, 0, max_speed, 0, 1)
+	
+	height_param = remap(music_terrain.get_height(pos_x, pos_z), 0, 1, 0, 12)
+	
 
 func update_pos():
 	var mw = music_terrain.map_width * music_terrain.map_scale * .5

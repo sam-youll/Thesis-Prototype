@@ -138,7 +138,7 @@ script = ExtResource("2_mb777")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("music_terrain", "volume_meter") instance=ExtResource("3_x2drb")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.667, 8.51524, 0)
 jump_vel = 10.0
 music_terrain = NodePath("../MusicTerrain")
 cam_speed = 0.1
