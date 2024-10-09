@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{c9f266d4-2d31-42e7-8037-f4a2b8c87cb2}">
 		<property name="name">
-			<value>Terrain Height</value>
+			<value>TerrainHeight</value>
 		</property>
 		<relationship name="folder">
 			<destination>{e4e38bb7-a520-445b-aac1-442732793690}</destination>
