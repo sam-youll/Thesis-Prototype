@@ -534,6 +534,29 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(100, 50)
 text = "RESTART"
 
+[node name="ToggleFullScreen" type="CheckButton" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 331.0
+offset_top = -60.0
+offset_right = 375.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Label" type="Label" parent="PauseMenu/ToggleFullScreen"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -25.0
+offset_right = 94.0
+offset_bottom = -2.0
+text = "Toggle full screen"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jalq")
 camera_attributes = SubResource("CameraAttributesPractical_lqv80")
@@ -692,3 +715,4 @@ skeleton = NodePath("../..")
 
 [connection signal="pressed" from="PauseMenu/Button" to="GameManager" method="_on_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Button2" to="GameManager" method="_on_reset_button_pressed"]
+[connection signal="toggled" from="PauseMenu/ToggleFullScreen" to="GameManager" method="_on_toggle_full_screen_toggled"]

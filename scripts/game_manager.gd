@@ -3,6 +3,7 @@ class_name GameManager
 extends Node
 
 @onready var pause_menu: Control = $"../PauseMenu"
+var is_fullscreen: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,3 +28,11 @@ func _on_button_pressed() -> void:
 
 func _on_reset_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_toggle_full_screen_toggled(toggled_on: bool) -> void:
+	is_fullscreen = toggled_on
+	if is_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
