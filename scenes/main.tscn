@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=36 format=3 uid="uid://7euqejvslmgf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
@@ -7,8 +7,12 @@
 [ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
 [ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
 [ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
+[ext_resource type="Texture2D" uid="uid://dau230i85cbrj" path="res://assets/textures/tool icons/raise terrain card.png" id="4_4ekyq"]
+[ext_resource type="Texture2D" uid="uid://dm8auxv6bwmkx" path="res://assets/textures/tool icons/lower terrain card.png" id="5_sm4ys"]
+[ext_resource type="Texture2D" uid="uid://b0meuw3lvwrvp" path="res://assets/textures/tool icons/celandine card.png" id="6_yvu0h"]
+[ext_resource type="Texture2D" uid="uid://cg8bwwnu0jy28" path="res://assets/textures/tool icons/fern card.png" id="7_mwr02"]
 [ext_resource type="PackedScene" uid="uid://c1ssmj3jqyx8h" path="res://scenes/celandine.tscn" id="8_kwqva"]
-[ext_resource type="PackedScene" uid="uid://cluuf14vpbakm" path="res://scenes/audio_manager.tscn" id="8_myh0g"]
+[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://scenes/audio_manager.tscn" id="8_myh0g"]
 [ext_resource type="Script" path="res://scenes/end_of_course_teleporter.gd" id="10_vtc6y"]
 [ext_resource type="ArrayMesh" uid="uid://c4ntrpa6o5xqb" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 1_0.res" id="11_nmsjh"]
 [ext_resource type="ArrayMesh" uid="uid://dwx3q8erojh5l" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 2_0.res" id="12_uf72e"]
@@ -16,6 +20,14 @@
 [ext_resource type="ArrayMesh" uid="uid://cyhs6mounwf36" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 4_0.res" id="14_iti85"]
 [ext_resource type="ArrayMesh" uid="uid://e0e8o2jkainy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 5_0.res" id="15_20i05"]
 [ext_resource type="ArrayMesh" uid="uid://dyy0uxt2l36wg" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 6_0.res" id="16_r52mi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
+shader = ExtResource("1_c6sn7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_slbpm"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
@@ -27,9 +39,6 @@ shader_parameter/margin = Vector2(0.38, 0)
 shader_parameter/shear_angle = -0.03
 shader_parameter/use_value_gradient = false
 shader_parameter/invert = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
-shader = ExtResource("1_c6sn7")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
 
@@ -45,6 +54,14 @@ subdivide_depth = 7
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vngr"]
 plane = Plane(-1, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxosh"]
+transparency = 1
+albedo_color = Color(0.843137, 0, 0.419608, 0.807843)
+
+[sub_resource type="BoxMesh" id="BoxMesh_duhm8"]
+material = SubResource("StandardMaterial3D_jxosh")
+size = Vector3(10, 64, 64)
 
 [sub_resource type="Gradient" id="Gradient_e5oks"]
 interpolation_mode = 2
@@ -66,6 +83,7 @@ tonemap_mode = 3
 tonemap_white = 5.0
 ssao_enabled = true
 glow_enabled = true
+glow_intensity = 1.86
 glow_bloom = 1.0
 fog_enabled = true
 fog_mode = 1
@@ -84,11 +102,20 @@ dof_blur_far_distance = 25.0
 [node name="Main" type="Node3D"]
 
 [node name="UI" type="Control" parent="."]
-visible = false
+clip_contents = true
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,11 +130,71 @@ handle_input_locally = false
 render_target_update_mode = 0
 
 [node name="YouAreHere" type="TextureRect" parent="UI/SubViewportContainer/SubViewport"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = false
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 3
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
 offset_right = 40.0
 offset_bottom = 40.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
 scale = Vector2(0.3, 0.3)
 pivot_offset = Vector2(10, 10)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+mouse_filter = 1
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+theme = null
+theme_type_variation = &""
 texture = ExtResource("2_0aeaf")
+expand_mode = 0
+stretch_mode = 0
+flip_h = false
+flip_v = false
+script = null
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 layout_mode = 1
@@ -119,15 +206,276 @@ offset_right = 400.0
 offset_bottom = 608.0
 grow_vertical = 0
 
-[node name="Volume Meter" type="Panel" parent="UI/PanelContainer"]
-material = SubResource("ShaderMaterial_306jl")
-layout_mode = 2
-
 [node name="Minimap" type="ColorRect" parent="UI"]
+visible = false
 material = SubResource("ShaderMaterial_1vfed")
 layout_mode = 1
 offset_right = 512.0
 offset_bottom = 512.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -97.9999
+offset_right = 412.0
+offset_bottom = 2.0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(0, 100)
+
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+mouse_filter = 1
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+theme = null
+theme_type_variation = &""
+texture = ExtResource("4_4ekyq")
+expand_mode = 2
+stretch_mode = 0
+flip_h = false
+flip_v = false
+script = null
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = " 1"
+label_settings = SubResource("LabelSettings_slbpm")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/HBoxContainer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+mouse_filter = 1
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+theme = null
+theme_type_variation = &""
+texture = ExtResource("5_sm4ys")
+expand_mode = 2
+stretch_mode = 0
+flip_h = false
+flip_v = false
+script = null
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = " 2"
+label_settings = SubResource("LabelSettings_slbpm")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/HBoxContainer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+mouse_filter = 1
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+theme = null
+theme_type_variation = &""
+texture = ExtResource("6_yvu0h")
+expand_mode = 2
+stretch_mode = 0
+flip_h = false
+flip_v = false
+script = null
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = " 3"
+label_settings = SubResource("LabelSettings_slbpm")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/HBoxContainer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+mouse_filter = 1
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+theme = null
+theme_type_variation = &""
+texture = ExtResource("7_mwr02")
+expand_mode = 2
+stretch_mode = 0
+flip_h = false
+flip_v = false
+script = null
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect4"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = " 4"
+label_settings = SubResource("LabelSettings_slbpm")
+
+[node name="Volume Meter" type="Panel" parent="UI"]
+material = SubResource("ShaderMaterial_306jl")
+layout_mode = 2
+anchor_left = 0.007
+anchor_top = 0.799
+anchor_right = 0.291
+anchor_bottom = 0.838
+offset_left = 0.448
+offset_top = 0.235962
+offset_right = 0.623962
+offset_bottom = -0.168091
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.729554, 0.538159, -0.422062, 6.76179e-10, 0.617118, 0.78687, 0.683923, -0.574064, 0.450221, 0, 0, 0)
@@ -138,11 +486,11 @@ script = ExtResource("2_mb777")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("music_terrain", "volume_meter") instance=ExtResource("3_x2drb")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.667, 8.51524, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -107.667, 8.51524, 0)
 jump_vel = 10.0
 music_terrain = NodePath("../MusicTerrain")
 cam_speed = 0.1
-volume_meter = NodePath("../UI/PanelContainer/Volume Meter")
+volume_meter = NodePath("../UI/Volume Meter")
 
 [node name="MusicTerrain" parent="." node_paths=PackedStringArray("player", "minimap") instance=ExtResource("3_d88xf")]
 player = NodePath("../PlayerCharacter")
@@ -186,10 +534,23 @@ shape = SubResource("WorldBoundaryShape3D_8vngr")
 [node name="SpawnPos" type="Node3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -236, 0.1, 0)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_duhm8")
+
 [node name="Trees" type="Node3D" parent="."]
 
 [node name="SketchfabSceneTree10" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, -9.70218, 27.6162, 63.8618)
+mesh = ExtResource("11_nmsjh")
+skeleton = NodePath("../..")
+
+[node name="SketchfabSceneTree11" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, 58.0838, 27.6162, -64.3909)
+mesh = ExtResource("11_nmsjh")
+skeleton = NodePath("../..")
+
+[node name="SketchfabSceneTree12" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, -156.315, 27.6162, 3.82689)
 mesh = ExtResource("11_nmsjh")
 skeleton = NodePath("../..")
 
@@ -198,8 +559,28 @@ transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07,
 mesh = ExtResource("12_uf72e")
 skeleton = NodePath("../..")
 
+[node name="SketchfabSceneTree21" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07, 2.79045, 2.43949e-07, 3, 2.27435e-07, 109.675, 27.6162, 52.9405)
+mesh = ExtResource("12_uf72e")
+skeleton = NodePath("../..")
+
+[node name="SketchfabSceneTree22" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07, 2.79045, 2.43949e-07, 3, 2.27435e-07, -104.71, 27.6162, 56.8121)
+mesh = ExtResource("12_uf72e")
+skeleton = NodePath("../..")
+
 [node name="SketchfabSceneTree30" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.38296, 3.41932e-07, -1.8225, -1.8225, -1.04162e-07, 2.38296, 2.08325e-07, 3, 2.90462e-07, 104.563, 27.6162, -46.5223)
+mesh = ExtResource("13_ng8vk")
+skeleton = NodePath("../..")
+
+[node name="SketchfabSceneTree31" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(-2.38296, 3.41932e-07, -1.8225, -1.8225, -1.04162e-07, 2.38296, 2.08325e-07, 3, 2.90462e-07, 24.7423, 27.6162, 91.2829)
+mesh = ExtResource("13_ng8vk")
+skeleton = NodePath("../..")
+
+[node name="SketchfabSceneTree32" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(-2.75335, 3.06534e-07, -1.19125, -1.19125, -1.83858e-07, 2.75335, 2.08325e-07, 3, 2.90462e-07, -127.54, 27.6162, -43.4225)
 mesh = ExtResource("13_ng8vk")
 skeleton = NodePath("../..")
 
@@ -214,7 +595,7 @@ mesh = ExtResource("15_20i05")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree60" type="MeshInstance3D" parent="Trees"]
-transform = Transform3D(-3, 2.62268e-07, 1.14641e-14, 0, -1.31134e-07, 3, 2.62268e-07, 3, 1.31134e-07, 132.69, 27.6162, 52.0909)
+transform = Transform3D(-2.69328, 2.93216e-07, -1.32146, -1.32146, -2.20087e-09, 2.69328, 2.62268e-07, 3, 1.31134e-07, -16.5005, 35.9392, -41.238)
 mesh = ExtResource("16_r52mi")
 skeleton = NodePath("../..")
 

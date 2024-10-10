@@ -9,7 +9,8 @@ class_name MusicTerrain
 var mesh_mat: ShaderMaterial
 var heightmap_img: Image
 var heightmap_tex: Texture2D
-var is_terrain_deform_on: bool = false
+enum Terrain_deform{OFF, RAISE, LOWER}
+var terrain_deform := Terrain_deform.OFF
 @export var map_width: int = 64
 @export var map_height: int = 1024
 @export var map_scale: float = .5 # (e.g. 512 x 512 @ .5 scale -> 256m x 256m in-game)
@@ -31,6 +32,11 @@ var celandine_img: Image # this image records locations of celandine
 #fmod oneshot variable
 var chime: FmodEvent = null
 
+@onready var raise_card: TextureRect = $"../UI/HBoxContainer/TextureRect"
+@onready var lower_card: TextureRect = $"../UI/HBoxContainer/TextureRect2"
+@onready var cel_card: TextureRect = $"../UI/HBoxContainer/TextureRect3"
+@onready var fern_card: TextureRect = $"../UI/HBoxContainer/TextureRect4"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,26 +45,55 @@ func _ready() -> void:
 	init_celandine_img()
 	mesh_mat = mesh_instance.mesh.surface_get_material(0)
 	mesh_mat.set_shader_parameter("amplitude", amplitude)
-	if is_terrain_deform_on:
-		update_shape()
 	update_shape()
 	
 	#fmod event initialize
 	chime = FmodServer.create_event_instance("event:/mus_chime")
 	
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("toggle_terrain_deform"):
-		is_terrain_deform_on = !is_terrain_deform_on
-		print(is_terrain_deform_on)
+	if Input.is_action_just_pressed("raise_terrain"):
+		if terrain_deform == Terrain_deform.OFF:
+			terrain_deform = Terrain_deform.RAISE
+		elif terrain_deform == Terrain_deform.RAISE:
+			terrain_deform = Terrain_deform.OFF
+		elif terrain_deform == Terrain_deform.LOWER:
+			terrain_deform = Terrain_deform.RAISE
+	if Input.is_action_just_pressed("lower_terrain"):
+		if terrain_deform == Terrain_deform.OFF:
+			terrain_deform = Terrain_deform.LOWER
+		elif terrain_deform == Terrain_deform.RAISE:
+			terrain_deform = Terrain_deform.LOWER
+		elif terrain_deform == Terrain_deform.LOWER:
+			terrain_deform = Terrain_deform.OFF
+	match terrain_deform:
+		Terrain_deform.OFF:
+			raise_card.set_modulate(Color.WHITE)
+			lower_card.set_modulate(Color.WHITE)
+		Terrain_deform.LOWER:
+			raise_card.set_modulate(Color.WHITE)
+			lower_card.set_modulate(Color.DIM_GRAY)
+		Terrain_deform.RAISE:
+			raise_card.set_modulate(Color.DIM_GRAY)
+			lower_card.set_modulate(Color.WHITE)
 		
 	if Input.is_action_just_pressed("spawn_celandine") && player.state != 2:
 		spawn_celandine()
+		cel_card.set_modulate(Color.DIM_GRAY)
+	if cel_card.modulate.r < 1:
+		var c = cel_card.modulate.r + .015
+		var new_col = Color(c, c, c)
+		cel_card.set_modulate(new_col)
 	if Input.is_action_just_pressed("spawn_fern") && player.state != 2:
 		spawn_fern()
+		fern_card.set_modulate(Color.DIM_GRAY)
+	if fern_card.modulate.r < 1:
+		var c = fern_card.modulate.r + .015
+		var new_col = Color(c, c, c)
+		fern_card.set_modulate(new_col)
 
 func _physics_process(delta: float) -> void: 
 	if player.pos_x != null:
-		if is_terrain_deform_on:
+		if terrain_deform != Terrain_deform.OFF:
 			update_heightmap()
 		var img := ImageTexture.create_from_image(heightmap_img)
 		mesh_mat.set_shader_parameter("heightmap", img)
@@ -76,7 +111,7 @@ func init_heightmap() -> void:
 	for x in map_width:
 		for y in map_height:
 			#var val = .1*cos(x * .2)*sin(y * .2) + .1
-			var val = noise_img.get_pixel(x, y).r
+			var val = noise_img.get_pixel(x, y).r * .2 + .4
 			#var val = (pow(x - 32, 2)) / (32 * 32)
 			#var val = 0
 			var col = Color(val, val, val)
@@ -105,7 +140,11 @@ func update_heightmap() -> void:
 			var dist: float = (player_pos - Vector2(mx, mz)).length()
 			dist = remap(dist, 0, radius, 1, 0)
 			dist = clamp(dist, 0, 1)
-			var col_val: float = player.speed_param * dist * .005 + height
+			var col_val: float
+			if terrain_deform == Terrain_deform.RAISE:
+				col_val = height + (player.speed_param*.8 + .2) * dist * .008
+			elif terrain_deform == Terrain_deform.LOWER:
+				col_val = height - player.speed_param * dist * .002
 			col_val = clamp(col_val, 0, 1)
 			var col: Color = Color(col_val, col_val, col_val)
 			heightmap_img.set_pixel(mx, mz, col)
