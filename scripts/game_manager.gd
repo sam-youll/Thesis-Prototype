@@ -14,6 +14,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = !get_tree().paused
+		if get_tree().paused:
+			FmodServer.pause_all_events()
+		else:
+			FmodServer.unpause_all_events()
 	
 	if get_tree().paused:
 		pause_menu.visible = true
