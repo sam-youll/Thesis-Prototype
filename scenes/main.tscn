@@ -1,5 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=37 format=3 uid="uid://7euqejvslmgf"]
 
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_aqonh"]
 [ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
 [ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
 [ext_resource type="Texture2D" uid="uid://c87qhitafwua5" path="res://assets/textures/arrow.png" id="2_0aeaf"]
@@ -40,29 +41,6 @@ shader_parameter/shear_angle = -0.03
 shader_parameter/use_value_gradient = false
 shader_parameter/invert = false
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p7uvu"]
-noise = SubResource("FastNoiseLite_wdgr0")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_fohas"]
-size = Vector2(4, 4)
-subdivide_width = 7
-subdivide_depth = 7
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vngr"]
-plane = Plane(-1, 0, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxosh"]
-transparency = 1
-albedo_color = Color(0.843137, 0, 0.419608, 0.807843)
-
-[sub_resource type="BoxMesh" id="BoxMesh_duhm8"]
-material = SubResource("StandardMaterial3D_jxosh")
-size = Vector3(10, 64, 64)
-
 [sub_resource type="Gradient" id="Gradient_e5oks"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.233831, 0.800995, 1)
@@ -99,7 +77,34 @@ adjustment_color_correction = SubResource("GradientTexture1D_5qhgy")
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lqv80"]
 dof_blur_far_distance = 25.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wdgr0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p7uvu"]
+noise = SubResource("FastNoiseLite_wdgr0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fohas"]
+size = Vector2(4, 4)
+subdivide_width = 7
+subdivide_depth = 7
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb8n1"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vngr"]
+plane = Plane(-1, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxosh"]
+transparency = 1
+albedo_color = Color(0.843137, 0, 0.419608, 0.807843)
+
+[sub_resource type="BoxMesh" id="BoxMesh_duhm8"]
+material = SubResource("StandardMaterial3D_jxosh")
+size = Vector3(10, 64, 64)
+
 [node name="Main" type="Node3D"]
+
+[node name="GameManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_aqonh")
 
 [node name="UI" type="Control" parent="."]
 clip_contents = true
@@ -477,6 +482,62 @@ offset_top = 0.235962
 offset_right = 0.623962
 offset_bottom = -0.168091
 
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.205117, 0.205117, 0.205117, 0.811765)
+
+[node name="Button" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 106.0
+offset_top = -38.0
+offset_right = 153.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(100, 50)
+text = "QUIT"
+
+[node name="Button2" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 65.0
+offset_top = 117.0
+offset_right = 140.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(100, 50)
+text = "RESTART"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7jalq")
+camera_attributes = SubResource("CameraAttributesPractical_lqv80")
+
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.729554, 0.538159, -0.422062, 6.76179e-10, 0.617118, 0.78687, 0.683923, -0.574064, 0.450221, 0, 0, 0)
 shadow_enabled = true
@@ -629,6 +690,5 @@ transform = Transform3D(-2.09026, 3.56332e-07, -2.15194, -2.15194, -9.1368e-08, 
 mesh = ExtResource("16_r52mi")
 skeleton = NodePath("../..")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7jalq")
-camera_attributes = SubResource("CameraAttributesPractical_lqv80")
+[connection signal="pressed" from="PauseMenu/Button" to="GameManager" method="_on_button_pressed"]
+[connection signal="pressed" from="PauseMenu/Button2" to="GameManager" method="_on_reset_button_pressed"]
