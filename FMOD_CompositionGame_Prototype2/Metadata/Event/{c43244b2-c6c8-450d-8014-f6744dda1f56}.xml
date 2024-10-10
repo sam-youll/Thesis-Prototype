@@ -1010,6 +1010,7 @@
 		</property>
 		<relationship name="automationCurves">
 			<destination>{b87a94d4-e113-4094-aec0-bfcb7527156f}</destination>
+			<destination>{07137cfe-16cd-4454-8bd6-e4ca856eb6da}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{33931870-accc-4eec-b7bb-e772c2bf3b5e}">
@@ -1214,6 +1215,15 @@
 			<destination>{2782b5b2-1fdd-4600-a581-9f570d1800b2}</destination>
 		</relationship>
 	</object>
+	<object class="AutomationCurve" id="{07137cfe-16cd-4454-8bd6-e4ca856eb6da}">
+		<relationship name="parameter">
+			<destination>{72d20cde-ad2f-446b-b05e-c30e2a821a28}</destination>
+		</relationship>
+		<relationship name="automationPoints">
+			<destination>{8b944165-0433-4350-9689-49ff00a48395}</destination>
+			<destination>{d4445a24-ec96-40f4-baa6-6cb02d99d8c7}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{2f808d44-a1be-418f-bda2-c2b0fad5e021}" />
 	<object class="PannerEffect" id="{4483e1a8-2d6c-4f1a-947e-9f2c733d2333}">
 		<property name="overridingOutputFormat">
@@ -1247,6 +1257,22 @@
 		</relationship>
 	</object>
 	<object class="AutomationPoint" id="{2782b5b2-1fdd-4600-a581-9f570d1800b2}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{8b944165-0433-4350-9689-49ff00a48395}">
+		<property name="position">
+			<value>1</value>
+		</property>
+		<property name="value">
+			<value>-8.80000019</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{d4445a24-ec96-40f4-baa6-6cb02d99d8c7}">
 		<property name="position">
 			<value>0</value>
 		</property>
