@@ -102,8 +102,9 @@
 	<object class="MixerBusPanner" id="{636ede7a-bcc6-4a9d-b95b-3fd079cc3c22}" />
 	<object class="MixerBusEffectChain" id="{2521590f-da7e-41a8-9003-e9cd6a53099c}">
 		<relationship name="effects">
-			<destination>{71e3dc82-f52a-45dc-99d8-38343eee9a35}</destination>
+			<destination>{9fa02277-2ae3-409f-b947-6410d87ed26f}</destination>
 			<destination>{e7dbce7c-e3c1-46a6-a22c-71ae2b34bc66}</destination>
+			<destination>{a9ce1249-9b3c-4fde-ae43-ff1f1e230912}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ecad39e3-d0bb-4df1-91b4-135c9f5d2272}" />
@@ -120,18 +121,26 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{d2bd15fe-ab9e-4433-a152-3f5323bb0933}" />
-	<object class="CompressorEffect" id="{71e3dc82-f52a-45dc-99d8-38343eee9a35}">
+	<object class="CompressorEffect" id="{9fa02277-2ae3-409f-b947-6410d87ed26f}">
 		<property name="threshold">
-			<value>-21</value>
+			<value>-18</value>
 		</property>
 		<property name="ratio">
-			<value>4.9000001</value>
+			<value>3.4000001</value>
 		</property>
 		<property name="gain">
-			<value>3.5</value>
+			<value>7</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{e7dbce7c-e3c1-46a6-a22c-71ae2b34bc66}" />
+	<object class="ThreeEQEffect" id="{a9ce1249-9b3c-4fde-ae43-ff1f1e230912}">
+		<property name="lowGain">
+			<value>3</value>
+		</property>
+		<property name="highGain">
+			<value>-22.5</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{d7abfe90-ea03-46a8-8779-45eba715654f}">
 		<relationship name="audioFile">
 			<destination>{eda524e8-deae-417d-b592-c0f458723ea0}</destination>
