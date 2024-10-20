@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcmv713hqlyq7"]
+
+[ext_resource type="Script" path="res://scenes/grindrail.gd" id="1_7f1q0"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y84nk"]
+
+[node name="grindrail" type="MeshInstance3D"]
+mesh = SubResource("ArrayMesh_y84nk")
+script = ExtResource("1_7f1q0")
