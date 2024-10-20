@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyb20oujg0mxu"]
+
+[ext_resource type="PackedScene" uid="uid://7fyt3iw18q1r" path="res://assets/models/boostpad/tempboost.glb" id="1_fofms"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+
+[node name="tempboost" parent="." instance=ExtResource("1_fofms")]
