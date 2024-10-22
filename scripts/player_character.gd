@@ -15,6 +15,10 @@ enum State {
 	crash
 }
 
+#GRIND RAIL
+@export var grindrail: PackedScene
+var current_rail: Node3D
+
 var state: State = State.stand
 
 # CAMERA
@@ -151,6 +155,11 @@ func _physics_process(delta: float) -> void:
 	
 	height_param = remap(music_terrain.get_height(pos_x, pos_z), 0, 1, 0, 12)
 	
+	if Input.is_action_just_pressed("spawn_grind_rail"):
+		spawn_grind_rail()
+	
+	if Input.is_action_pressed("spawn_grind_rail"):
+		current_rail.extend_rail(global_position)
 
 func update_pos():
 	var mw = music_terrain.map_width * music_terrain.map_scale * .5
@@ -159,3 +168,8 @@ func update_pos():
 	pos_x = clamp(pos_x, 0, music_terrain.map_width - 1)
 	pos_z = floor(remap(position.z, -mh, mh, 0, music_terrain.map_height - 1))
 	pos_z = clamp(pos_z, 0, music_terrain.map_height - 1)
+	
+func spawn_grind_rail():
+	var new_rail = grindrail.instantiate()
+	get_parent().add_child(new_rail)
+	current_rail = new_rail
