@@ -323,6 +323,7 @@ unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -107.667, 8.51524, 0)
 jump_vel = 10.0
 music_terrain = NodePath("../MusicTerrain")
+grindrail = ExtResource("22_1ksf2")
 cam_speed = 0.1
 volume_meter = NodePath("../UI/Volume Meter")
 
