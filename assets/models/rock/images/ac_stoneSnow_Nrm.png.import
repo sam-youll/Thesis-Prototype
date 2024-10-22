@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmbsto136fdeu"
-path="res://.godot/imported/ac_stonesnow_nrm.png-868e788aca50fd55117a29a9be2c8eb4.ctex"
+path.s3tc="res://.godot/imported/ac_stonesnow_nrm.png-868e788aca50fd55117a29a9be2c8eb4.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/rock/images/ac_stonesnow_nrm.png"
-dest_files=["res://.godot/imported/ac_stonesnow_nrm.png-868e788aca50fd55117a29a9be2c8eb4.ctex"]
+dest_files=["res://.godot/imported/ac_stonesnow_nrm.png-868e788aca50fd55117a29a9be2c8eb4.s3tc.ctex"]
 
 [params]
 

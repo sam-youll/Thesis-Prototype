@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgrx1xc1juta6"
-path="res://.godot/imported/ac_stone_alb.png-03a7badd1e7fa54ca6f2864e6c3afb86.ctex"
+path.s3tc="res://.godot/imported/ac_stone_alb.png-03a7badd1e7fa54ca6f2864e6c3afb86.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/rock/images/ac_stone_alb.png"
-dest_files=["res://.godot/imported/ac_stone_alb.png-03a7badd1e7fa54ca6f2864e6c3afb86.ctex"]
+dest_files=["res://.godot/imported/ac_stone_alb.png-03a7badd1e7fa54ca6f2864e6c3afb86.s3tc.ctex"]
 
 [params]
 
