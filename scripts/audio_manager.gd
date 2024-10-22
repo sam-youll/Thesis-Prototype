@@ -3,9 +3,15 @@ extends Node3D
 class_name AudioManager
 #declaring event variables
 #constant
-@onready var ambience : FmodEvent = null
+#ambiences
+@onready var amb_mountain : FmodEvent = null
+@onready var amb_wind: FmodEvent = null
+#char sound
 @onready var character_sound: FmodEvent = null
+#melody
 @onready var melody : FmodEvent = null
+
+
 @onready var player: PlayerCharacter = %PlayerCharacter
 
 #oneshot
@@ -18,7 +24,8 @@ func _ready() -> void:
 	
 	#initializing events
 	#constant
-	ambience = FmodServer.create_event_instance("event:/Ambience")
+	amb_mountain = FmodServer.create_event_instance("event:/amb_mountain")
+	amb_wind = FmodServer.create_event_instance("event:/amb_wind")
 	character_sound = FmodServer.create_event_instance("event:/Character Sounds")
 	melody = FmodServer.create_event_instance("event:/mus_lead")
 	#oneshot
@@ -26,7 +33,8 @@ func _ready() -> void:
 	chime = FmodServer.create_event_instance("event:/mus_chime")
 	
 	#playing events
-	ambience.start()
+	amb_mountain.start()
+	amb_wind.start()
 	character_sound.start()
 	melody.start()
 
@@ -48,8 +56,6 @@ func _process(delta: float) -> void:
 	melody.set_parameter_by_name("PlayerLean", player.zlean)
 	melody.set_parameter_by_name("PlayerGravity", player.xlean)
 	
-	ambience.set_parameter_by_name("PlayerLean", player.zlean)
-	ambience.set_parameter_by_name("PlayerGravity", player.xlean)
 	
 	if Input.is_action_just_pressed("jump"):
 		FmodServer.play_one_shot("event:/jump sfx")

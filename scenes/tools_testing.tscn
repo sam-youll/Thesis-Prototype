@@ -1,29 +1,29 @@
-[gd_scene load_steps=37 format=3 uid="uid://7euqejvslmgf"]
+[gd_scene load_steps=37 format=3 uid="uid://cnta1m4m4rmo6"]
 
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_aqonh"]
-[ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="1_c6sn7"]
-[ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="1_cxxyd"]
-[ext_resource type="Texture2D" uid="uid://c87qhitafwua5" path="res://assets/textures/arrow.png" id="2_0aeaf"]
-[ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="2_mb777"]
-[ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="2_yqvfm"]
-[ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="3_d88xf"]
-[ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="3_x2drb"]
-[ext_resource type="Texture2D" uid="uid://dau230i85cbrj" path="res://assets/textures/tool icons/raise terrain card.png" id="4_4ekyq"]
-[ext_resource type="Texture2D" uid="uid://dm8auxv6bwmkx" path="res://assets/textures/tool icons/lower terrain card.png" id="5_sm4ys"]
-[ext_resource type="Texture2D" uid="uid://b0meuw3lvwrvp" path="res://assets/textures/tool icons/celandine card.png" id="6_yvu0h"]
-[ext_resource type="Texture2D" uid="uid://cg8bwwnu0jy28" path="res://assets/textures/tool icons/fern card.png" id="7_mwr02"]
-[ext_resource type="PackedScene" uid="uid://c1ssmj3jqyx8h" path="res://scenes/celandine.tscn" id="8_kwqva"]
-[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://scenes/audio_manager.tscn" id="8_myh0g"]
-[ext_resource type="Script" path="res://scenes/end_of_course_teleporter.gd" id="10_vtc6y"]
-[ext_resource type="ArrayMesh" uid="uid://c4ntrpa6o5xqb" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 1_0.res" id="11_nmsjh"]
-[ext_resource type="ArrayMesh" uid="uid://dwx3q8erojh5l" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 2_0.res" id="12_uf72e"]
-[ext_resource type="ArrayMesh" uid="uid://snwdlux04ipy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 3_0.res" id="13_ng8vk"]
-[ext_resource type="ArrayMesh" uid="uid://cyhs6mounwf36" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 4_0.res" id="14_iti85"]
-[ext_resource type="ArrayMesh" uid="uid://e0e8o2jkainy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 5_0.res" id="15_20i05"]
-[ext_resource type="ArrayMesh" uid="uid://dyy0uxt2l36wg" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 6_0.res" id="16_r52mi"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_6ixol"]
+[ext_resource type="Texture2D" uid="uid://c87qhitafwua5" path="res://assets/textures/arrow.png" id="2_tyinc"]
+[ext_resource type="Shader" path="res://resources/shaders/screen_test.gdshader" id="3_bn0ld"]
+[ext_resource type="Texture2D" uid="uid://dau230i85cbrj" path="res://assets/textures/tool icons/raise terrain card.png" id="4_l53yc"]
+[ext_resource type="Texture2D" uid="uid://dm8auxv6bwmkx" path="res://assets/textures/tool icons/lower terrain card.png" id="5_xllf3"]
+[ext_resource type="Texture2D" uid="uid://b0meuw3lvwrvp" path="res://assets/textures/tool icons/celandine card.png" id="6_5y81b"]
+[ext_resource type="Texture2D" uid="uid://cg8bwwnu0jy28" path="res://assets/textures/tool icons/fern card.png" id="7_atc7b"]
+[ext_resource type="Shader" path="res://resources/shaders/progress_bar.gdshader" id="8_k5yao"]
+[ext_resource type="Material" uid="uid://b5sfdrkofqja8" path="res://resources/materials/sky.tres" id="9_g2qqs"]
+[ext_resource type="Script" path="res://scripts/directional_light_3d.gd" id="10_k128r"]
+[ext_resource type="PackedScene" uid="uid://m1243oocw1o4" path="res://scenes/player_character.tscn" id="11_fn3jm"]
+[ext_resource type="PackedScene" uid="uid://1bco2uolklvy" path="res://scenes/music_terrain.tscn" id="12_83b3x"]
+[ext_resource type="PackedScene" uid="uid://c1ssmj3jqyx8h" path="res://scenes/celandine.tscn" id="13_y8pqc"]
+[ext_resource type="PackedScene" uid="uid://c345cnmm5a5bd" path="res://scenes/audio_manager.tscn" id="14_e37hy"]
+[ext_resource type="Script" path="res://scenes/end_of_course_teleporter.gd" id="15_p7iqo"]
+[ext_resource type="ArrayMesh" uid="uid://c4ntrpa6o5xqb" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 1_0.res" id="16_4yu5w"]
+[ext_resource type="ArrayMesh" uid="uid://dwx3q8erojh5l" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 2_0.res" id="17_678f2"]
+[ext_resource type="ArrayMesh" uid="uid://snwdlux04ipy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 3_0.res" id="18_0gjs7"]
+[ext_resource type="ArrayMesh" uid="uid://cyhs6mounwf36" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 4_0.res" id="19_qstlu"]
+[ext_resource type="ArrayMesh" uid="uid://e0e8o2jkainy" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 5_0.res" id="20_nfhvk"]
+[ext_resource type="ArrayMesh" uid="uid://dyy0uxt2l36wg" path="res://assets/models/snowy trees/Sketchfab_Scene_Tree 6_0.res" id="21_isdyj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
-shader = ExtResource("1_c6sn7")
+shader = ExtResource("3_bn0ld")
 
 [sub_resource type="LabelSettings" id="LabelSettings_slbpm"]
 font_size = 24
@@ -32,7 +32,7 @@ outline_size = 10
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_306jl"]
 resource_local_to_scene = true
-shader = ExtResource("2_yqvfm")
+shader = ExtResource("8_k5yao")
 shader_parameter/stepify = true
 shader_parameter/value = 1.0
 shader_parameter/count = 20
@@ -51,7 +51,7 @@ gradient = SubResource("Gradient_e5oks")
 use_hdr = true
 
 [sub_resource type="Sky" id="Sky_l5c81"]
-sky_material = ExtResource("1_cxxyd")
+sky_material = ExtResource("9_g2qqs")
 
 [sub_resource type="Environment" id="Environment_7jalq"]
 background_mode = 2
@@ -104,7 +104,7 @@ size = Vector3(10, 64, 64)
 
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3
-script = ExtResource("1_aqonh")
+script = ExtResource("1_6ixol")
 
 [node name="UI" type="Control" parent="."]
 clip_contents = true
@@ -140,7 +140,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.3, 0.3)
 pivot_offset = Vector2(10, 10)
-texture = ExtResource("2_0aeaf")
+texture = ExtResource("2_tyinc")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 layout_mode = 1
@@ -173,7 +173,7 @@ pivot_offset = Vector2(0, 100)
 
 [node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_4ekyq")
+texture = ExtResource("4_l53yc")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect"]
@@ -185,7 +185,7 @@ label_settings = SubResource("LabelSettings_slbpm")
 
 [node name="TextureRect2" type="TextureRect" parent="UI/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("5_sm4ys")
+texture = ExtResource("5_xllf3")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect2"]
@@ -197,7 +197,7 @@ label_settings = SubResource("LabelSettings_slbpm")
 
 [node name="TextureRect3" type="TextureRect" parent="UI/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("6_yvu0h")
+texture = ExtResource("6_5y81b")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect3"]
@@ -209,7 +209,7 @@ label_settings = SubResource("LabelSettings_slbpm")
 
 [node name="TextureRect4" type="TextureRect" parent="UI/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("7_mwr02")
+texture = ExtResource("7_atc7b")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/TextureRect4"]
@@ -315,9 +315,9 @@ transform = Transform3D(0.729554, 0.538159, -0.422062, 6.76179e-10, 0.617118, 0.
 shadow_enabled = true
 shadow_blur = 3.0
 directional_shadow_blend_splits = true
-script = ExtResource("2_mb777")
+script = ExtResource("10_k128r")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("music_terrain", "volume_meter") instance=ExtResource("3_x2drb")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("music_terrain", "volume_meter") instance=ExtResource("11_fn3jm")]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -107.667, 8.51524, 0)
 jump_vel = 10.0
@@ -325,16 +325,16 @@ music_terrain = NodePath("../MusicTerrain")
 cam_speed = 0.1
 volume_meter = NodePath("../UI/Volume Meter")
 
-[node name="MusicTerrain" parent="." node_paths=PackedStringArray("player", "minimap") instance=ExtResource("3_d88xf")]
+[node name="MusicTerrain" parent="." node_paths=PackedStringArray("player", "minimap") instance=ExtResource("12_83b3x")]
 player = NodePath("../PlayerCharacter")
 minimap = NodePath("../UI/Minimap")
 radius = 24
 noise_tex = SubResource("NoiseTexture2D_p7uvu")
 template_mesh = SubResource("PlaneMesh_fohas")
 snap = Vector3(2, 2, 2)
-celandine_tscn = ExtResource("8_kwqva")
+celandine_tscn = ExtResource("13_y8pqc")
 
-[node name="AudioManager" parent="." instance=ExtResource("8_myh0g")]
+[node name="AudioManager" parent="." instance=ExtResource("14_e37hy")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -359,7 +359,7 @@ size = Vector3(16, 128, 128)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 0)
-script = ExtResource("10_vtc6y")
+script = ExtResource("15_p7iqo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("WorldBoundaryShape3D_8vngr")
@@ -374,92 +374,92 @@ mesh = SubResource("BoxMesh_duhm8")
 
 [node name="SketchfabSceneTree10" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, -9.70218, 27.6162, 63.8618)
-mesh = ExtResource("11_nmsjh")
+mesh = ExtResource("16_4yu5w")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree11" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, 58.0838, 27.6162, -64.3909)
-mesh = ExtResource("11_nmsjh")
+mesh = ExtResource("16_4yu5w")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree12" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.75204, 3.14472e-07, -1.19428, -1.19428, -1.20295e-07, 2.75204, 2.40591e-07, 3, 2.35541e-07, -156.315, 27.6162, 3.82689)
-mesh = ExtResource("11_nmsjh")
+mesh = ExtResource("16_4yu5w")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree20" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07, 2.79045, 2.43949e-07, 3, 2.27435e-07, -58.6176, 27.6162, -52.3918)
-mesh = ExtResource("12_uf72e")
+mesh = ExtResource("17_678f2")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree21" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07, 2.79045, 2.43949e-07, 3, 2.27435e-07, 109.675, 27.6162, 52.9405)
-mesh = ExtResource("12_uf72e")
+mesh = ExtResource("17_678f2")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree22" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.79045, 3.10419e-07, -1.10155, -1.10155, -1.21974e-07, 2.79045, 2.43949e-07, 3, 2.27435e-07, -104.71, 27.6162, 56.8121)
-mesh = ExtResource("12_uf72e")
+mesh = ExtResource("17_678f2")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree30" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.38296, 3.41932e-07, -1.8225, -1.8225, -1.04162e-07, 2.38296, 2.08325e-07, 3, 2.90462e-07, 104.563, 27.6162, -46.5223)
-mesh = ExtResource("13_ng8vk")
+mesh = ExtResource("18_0gjs7")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree31" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.38296, 3.41932e-07, -1.8225, -1.8225, -1.04162e-07, 2.38296, 2.08325e-07, 3, 2.90462e-07, 24.7423, 27.6162, 91.2829)
-mesh = ExtResource("13_ng8vk")
+mesh = ExtResource("18_0gjs7")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree32" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.75335, 3.06534e-07, -1.19125, -1.19125, -1.83858e-07, 2.75335, 2.08325e-07, 3, 2.90462e-07, -127.54, 27.6162, -43.4225)
-mesh = ExtResource("13_ng8vk")
+mesh = ExtResource("18_0gjs7")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree40" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.56574, -0.0362318, -1.55424, -1.55435, -1.13557e-07, 2.56593, -0.0309895, 2.99978, -0.0187722, 90.698, 27.6162, 60.0044)
-mesh = ExtResource("14_iti85")
+mesh = ExtResource("19_qstlu")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree50" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.68345, 3.20899e-07, -1.34131, -1.34131, -1.17297e-07, 2.68345, 2.34594e-07, 3, 2.48395e-07, 118.969, 27.6162, 78.427)
-mesh = ExtResource("15_20i05")
+mesh = ExtResource("20_nfhvk")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree60" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.69328, 2.93216e-07, -1.32146, -1.32146, -2.20087e-09, 2.69328, 2.62268e-07, 3, 1.31134e-07, -16.5005, 35.9392, -41.238)
-mesh = ExtResource("16_r52mi")
+mesh = ExtResource("21_isdyj")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree41" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.21441, 3.50738e-07, -2.02395, -2.02395, -9.6795e-08, 2.21441, 1.9359e-07, 3, 3.08074e-07, 21.2602, 27.6162, -89.2723)
-mesh = ExtResource("14_iti85")
+mesh = ExtResource("19_qstlu")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree51" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.06635, 3.57336e-07, -2.1749, -2.1749, -9.03232e-08, 2.06635, 1.80646e-07, 3, 3.2127e-07, 49.5313, 27.6162, -70.8497)
-mesh = ExtResource("15_20i05")
+mesh = ExtResource("20_nfhvk")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree61" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-3, 2.62268e-07, 1.14641e-14, 0, -1.31134e-07, 3, 2.62268e-07, 3, 1.31134e-07, 63.2522, 27.6162, -97.1858)
-mesh = ExtResource("16_r52mi")
+mesh = ExtResource("21_isdyj")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree42" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.56109, 3.30559e-07, -1.56231, -1.56231, -1.11949e-07, 2.56109, 2.23897e-07, 3, 2.67716e-07, 43.8016, 27.6162, 45.3044)
-mesh = ExtResource("14_iti85")
+mesh = ExtResource("19_qstlu")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree52" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.83113, 3.05645e-07, -0.992334, -0.992334, -1.23752e-07, 2.83113, 2.47505e-07, 3, 2.17887e-07, 72.0728, 27.6162, 63.727)
-mesh = ExtResource("15_20i05")
+mesh = ExtResource("20_nfhvk")
 skeleton = NodePath("../..")
 
 [node name="SketchfabSceneTree62" type="MeshInstance3D" parent="Trees"]
 transform = Transform3D(-2.09026, 3.56332e-07, -2.15194, -2.15194, -9.1368e-08, 2.09026, 1.82736e-07, 3, 3.19262e-07, 89.3841, 35.0905, 42.4929)
-mesh = ExtResource("16_r52mi")
+mesh = ExtResource("21_isdyj")
 skeleton = NodePath("../..")
 
 [connection signal="pressed" from="PauseMenu/Button" to="GameManager" method="_on_button_pressed"]
