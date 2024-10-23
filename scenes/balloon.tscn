@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfkur5yacdism"]
+
+[ext_resource type="ArrayMesh" uid="uid://chsoh55yuxw1l" path="res://assets/models/balloon/balloonbodymesh.tres" id="1_efgg0"]
+[ext_resource type="Script" path="res://scripts/balloon.gd" id="2_fwrjj"]
+[ext_resource type="ArrayMesh" uid="uid://6vi58pa2tuo6" path="res://assets/models/balloon/balloonknotmesh.tres" id="2_h6pba"]
+[ext_resource type="ArrayMesh" uid="uid://cnqneobhyeioq" path="res://assets/models/explosion/explosion_mesh0.res" id="2_mte4e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ti4g"]
+radius = 3.21579
+
+[node name="Balloon" type="MeshInstance3D"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = ExtResource("1_efgg0")
+script = ExtResource("2_fwrjj")
+frequency = 2.0
+
+[node name="Explosion" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 26.8927, 0)
+mesh = ExtResource("2_mte4e")
+skeleton = NodePath("../BalloonKnot")
+
+[node name="BalloonKnot" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_h6pba")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 25.9982, 0)
+shape = SubResource("SphereShape3D_3ti4g")
