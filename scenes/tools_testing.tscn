@@ -481,6 +481,8 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -90.6901, 0, 0.19342
 
 [node name="Balloon" parent="." instance=ExtResource("25_ocgoh")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -89.7891, 0.162885, 1.56844)
+amplitude = 2.0
+frequency = 0.5
 
 [node name="boostpad" parent="." instance=ExtResource("26_fjltk")]
 transform = Transform3D(0.596, 0, 0, 0, 0.03, 0, 0, 0, 1, -92.4137, 0, -2.03522)

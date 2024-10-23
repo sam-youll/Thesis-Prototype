@@ -12,6 +12,7 @@ radius = 3.21579
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 mesh = ExtResource("1_efgg0")
 script = ExtResource("2_fwrjj")
+frequency = 2.0
 
 [node name="Explosion" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 26.8927, 0)
@@ -26,3 +27,6 @@ mesh = ExtResource("2_h6pba")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 25.9982, 0)
 shape = SubResource("SphereShape3D_3ti4g")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 90.9481)
