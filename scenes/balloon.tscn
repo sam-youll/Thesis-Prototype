@@ -27,6 +27,3 @@ mesh = ExtResource("2_h6pba")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 25.9982, 0)
 shape = SubResource("SphereShape3D_3ti4g")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 90.9481)
