@@ -171,5 +171,7 @@ func update_pos():
 	
 func spawn_grind_rail():
 	var new_rail = grindrail.instantiate()
-	get_parent().add_child(new_rail)
+	add_child(new_rail)
 	current_rail = new_rail
+	new_rail.top_level = true
+	new_rail.global_position = global_position

@@ -9,6 +9,9 @@ var circle_centers := []
 
 @export var grindrail_material: Material
 
+func _ready() -> void:
+		print(position)
+
 # Called when the node enters the scene tree for the first time.
 func extend_rail(circle_center: Vector3) -> void:
 	#adding player pos
