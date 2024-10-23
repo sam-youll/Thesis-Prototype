@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyb20oujg0mxu"]
+[gd_scene load_steps=3 format=3 uid="uid://cyb20oujg0mxu"]
 
-[ext_resource type="PackedScene" uid="uid://7fyt3iw18q1r" path="res://assets/models/boostpad/tempboost.glb" id="1_fofms"]
+[ext_resource type="ArrayMesh" uid="uid://ccerms6yrbisk" path="res://assets/models/boostpad/tempboost_Cube.res" id="1_p26uj"]
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ukhv"]
+size = Vector3(2.00687, 1.94873, 2.01141)
 
-[node name="tempboost" parent="." instance=ExtResource("1_fofms")]
+[node name="boostpad" type="MeshInstance3D"]
+transform = Transform3D(0.596, 0, 0, 0, 0.03, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_p26uj")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00428772, 0.474365, -0.000946045)
+shape = SubResource("BoxShape3D_1ukhv")
