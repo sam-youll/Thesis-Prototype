@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dqsibde1mhjbk"
-path="res://.godot/imported/ramp.glb-a8c5181dae58a1f067da35a79df76c77.scn"
+uid="uid://cy0422pywhjgh"
+path="res://.godot/imported/rampconvert.gltf-c552369654707f5d835ec2ad34810c7d.scn"
 
 [deps]
 
-source_file="res://assets/models/ramp/ramp.glb"
-dest_files=["res://.godot/imported/ramp.glb-a8c5181dae58a1f067da35a79df76c77.scn"]
+source_file="res://assets/models/ramp/rampconvert.gltf"
+dest_files=["res://.godot/imported/rampconvert.gltf-c552369654707f5d835ec2ad34810c7d.scn"]
 
 [params]
 
@@ -31,6 +31,18 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"meshes": {
+"rampconvert_sb_jump1": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://assets/models/ramp/rampconvert_sb_jump1.res"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

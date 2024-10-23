@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://j3v3gwwal1ug"]
+[gd_scene load_steps=3 format=3 uid="uid://j3v3gwwal1ug"]
 
-[ext_resource type="PackedScene" uid="uid://dlix242egj22l" path="res://assets/models/slalom flag/flagconvert.glb" id="1_4iirc"]
+[ext_resource type="ArrayMesh" uid="uid://t0acwwudxo7" path="res://assets/models/slalom flag/flagconvert_mesh0.res" id="1_km8u3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dr3gx"]
+size = Vector3(0.192505, 9.26665, 0.140869)
 
 [node name="slalom flag" type="MeshInstance3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("1_km8u3")
 
-[node name="flagconvert" parent="." instance=ExtResource("1_4iirc")]
-transform = Transform3D(0.005, 0, 0, 0, -2.18557e-10, -0.005, 0, 0.005, -2.18557e-10, 0, 0, 0)
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.0123723, 4.6177, -0.0242514)
+shape = SubResource("BoxShape3D_dr3gx")

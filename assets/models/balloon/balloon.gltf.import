@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dlix242egj22l"
-path="res://.godot/imported/flagconvert.glb-97bbe4d38c87f8226f245c54bac26bc5.scn"
+uid="uid://c288cyo6tichy"
+path="res://.godot/imported/balloon.gltf-aefd16ed76694ebf7520500e0ed6a4d8.scn"
 
 [deps]
 
-source_file="res://assets/models/slalom flag/flagconvert.glb"
-dest_files=["res://.godot/imported/flagconvert.glb-97bbe4d38c87f8226f245c54bac26bc5.scn"]
+source_file="res://assets/models/balloon/balloon.gltf"
+dest_files=["res://.godot/imported/balloon.gltf-aefd16ed76694ebf7520500e0ed6a4d8.scn"]
 
 [params]
 

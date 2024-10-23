@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv7pfpadmpi2a"]
-
-[ext_resource type="PackedScene" uid="uid://b1nksebs2hclp" path="res://assets/models/rock/DL_CoinStone.fbx" id="1_ylwx0"]
-
-[node name="MeshInstance3D" type="MeshInstance3D"]
-
-[node name="DL_CoinStone" parent="." instance=ExtResource("1_ylwx0")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)

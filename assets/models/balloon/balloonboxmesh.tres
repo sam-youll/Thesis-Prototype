@@ -1,0 +1,28 @@
+[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://dmwayc0w2xoeg"]
+
+[ext_resource type="Texture2D" uid="uid://dnsl17y0yr15e" path="res://assets/models/balloon/sBalloon.png" id="1_b45pd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh4dn"]
+resource_name = "mBalloon_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_b45pd")
+roughness = 0.5
+
+[resource]
+resource_name = "balloon__2_0"
+_surfaces = [{
+"aabb": AABB(-2.16117, 21.5625, -3.92008, 4.32234, 4.32234, 4.32234),
+"attribute_data": PackedByteArray("AQDAPgAAgD8AACA/AACAPwEAwD4AAEA/AAAgPwAAQD8BAMA+AABAPwAAID8AAEA/AQDAPgAAAD8AACA/AAAAPwEAwD4AAAA/AAAgPwAAAD8BAMA+AACAPgAAID8AAIA+AQDAPgAAgD4AACA/AACAPgEAwD4AAAAAAAAgPwAAAAAAACA/AACAPwEAYD8AAIA/AAAgPwAAQD8BAGA/AABAPwAAAD4AAIA/AQDAPgAAgD8AAAA+AABAPwEAwD4AAEA/"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(-2.16117, 21.5625, -3.92008, 4.32234, 4.32234, 4.32235)],
+"format": 34359745559,
+"index_count": 36,
+"index_data": PackedByteArray("AQAAAAIAAQACAAMABQAEAAYABQAGAAcACQAIAAoACQAKAAsADQAMAA4ADQAOAA8AEQAQABIAEQASABMAFQAUABYAFQAWABcA"),
+"material": SubResource("StandardMaterial3D_dh4dn"),
+"name": "mBalloon_mat",
+"primitive": 3,
+"skin_data": PackedByteArray("BQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAABQAAAAAAAAD//wAAAAAAAAUAAAAAAAAA//8AAAAAAAAFAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("nFAKwA+ArEHS9M0+nFAKQA+ArEHS9M0+nFAKwDYUz0HH9M0+nFAKQDYUz0HH9M0+nFAKwDYUz0HH9M0+nFAKQDYUz0HH9M0+nFAKwDYUz0Gf4nrAnFAKQDYUz0Gf4nrAnFAKwDYUz0Gf4nrAnFAKQDYUz0Gf4nrAnFAKwA+ArEGe4nrAnFAKQA+ArEGe4nrAnFAKwA+ArEGe4nrAnFAKQA+ArEGe4nrAnFAKwA+ArEHS9M0+nFAKQA+ArEHS9M0+nFAKQA+ArEHS9M0+nFAKQA+ArEGe4nrAnFAKQDYUz0HH9M0+nFAKQDYUz0Gf4nrAnFAKwA+ArEGe4nrAnFAKwA+ArEHS9M0+nFAKwDYUz0Gf4nrAnFAKwDYUz0HH9M0+/3//f////7//f/9/////v/9//3////+//3//f////7//f///////v/9///////+//3///////7//f///////v///AAD///+///8AAP///7///wAA////v///AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7////9//////////3//////////f/////////9//////wAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/")
+}]
+blend_shape_mode = 0

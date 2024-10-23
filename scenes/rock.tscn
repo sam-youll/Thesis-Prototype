@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7pfpadmpi2a"]
+
+[ext_resource type="ArrayMesh" uid="uid://b8b3b5in4i2ct" path="res://assets/models/rock/Stone1__ac_stoneSnow.res" id="1_8548g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buoxm"]
+size = Vector3(1, 0.960602, 0.732849)
+
+[node name="Rock" type="MeshInstance3D"]
+transform = Transform3D(1.25, 0, 0, 0, -5.46392e-08, 1.25, 0, -1.25, -5.46392e-08, 0, 0, 0)
+mesh = ExtResource("1_8548g")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.75, 0, 0, 0, 0.749986, 0, 0, 0, 0.749986, 0, 0.0380052, 0.209818)
+shape = SubResource("BoxShape3D_buoxm")
