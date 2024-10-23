@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bch3jgo8ifygm"
-path.s3tc="res://.godot/imported/tempboost_hello_.png-c99bd9ffbd563270dcb42ede9c86092e.s3tc.ctex"
+uid="uid://bwe8msd5bdu8j"
+path.s3tc="res://.godot/imported/hello.png-ed22f7ee9e314164af146a7476ff57da.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "0f6fac2feabb2d3a6d96c2cdbf13db41"
-}
 
 [deps]
 
-source_file="res://assets/models/boostpad/tempboost_hello_.png"
-dest_files=["res://.godot/imported/tempboost_hello_.png-c99bd9ffbd563270dcb42ede9c86092e.s3tc.ctex"]
+source_file="res://assets/models/boostpad/hello.png"
+dest_files=["res://.godot/imported/hello.png-ed22f7ee9e314164af146a7476ff57da.s3tc.ctex"]
 
 [params]
 

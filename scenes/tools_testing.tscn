@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cnta1m4m4rmo6"]
+[gd_scene load_steps=42 format=3 uid="uid://cnta1m4m4rmo6"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_6ixol"]
 [ext_resource type="Texture2D" uid="uid://c87qhitafwua5" path="res://assets/textures/arrow.png" id="2_tyinc"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://tq3kjsjswknr" path="res://scenes/ramp.tscn" id="23_cm1np"]
 [ext_resource type="PackedScene" uid="uid://j3v3gwwal1ug" path="res://scenes/slalom_flag.tscn" id="24_y3dvi"]
 [ext_resource type="PackedScene" uid="uid://bfkur5yacdism" path="res://scenes/balloon.tscn" id="25_ocgoh"]
+[ext_resource type="PackedScene" uid="uid://cyb20oujg0mxu" path="res://scenes/boostpad.tscn" id="26_fjltk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfed"]
 shader = ExtResource("3_bn0ld")
@@ -480,6 +481,9 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -90.6901, 0, 0.19342
 
 [node name="Balloon" parent="." instance=ExtResource("25_ocgoh")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -89.7891, 0.162885, 1.56844)
+
+[node name="boostpad" parent="." instance=ExtResource("26_fjltk")]
+transform = Transform3D(0.596, 0, 0, 0, 0.03, 0, 0, 0, 1, -92.4137, 0, -2.03522)
 
 [connection signal="pressed" from="PauseMenu/Button" to="GameManager" method="_on_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Button2" to="GameManager" method="_on_reset_button_pressed"]
